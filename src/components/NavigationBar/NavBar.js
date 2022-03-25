@@ -8,9 +8,9 @@ function NavBar() {
   return (
     <nav>
       <Link to="home" className="home">
-        <li>Placement Portal</li>
+        <li className="logo-nav">Placement Portal</li>
       </Link>
-      <ul>
+      <ul className="menu">
         <Link to="cvscorer" className="cvscorer">
           <li>CVScorer</li>
         </Link>
@@ -24,6 +24,11 @@ function NavBar() {
           <li>{username}</li>
         </Link>
       </ul>
+      <button className="hamburger is-active">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
     </nav>
   );
 }

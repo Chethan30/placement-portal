@@ -1,8 +1,8 @@
 import React from "react";
 import "./HomePage.css";
-import NavBar from "../../components/NavigationBar/NavBar";
+
 function HomePage() {
-  return <NavBar />;
+  return <div>HomePage</div>;
 }
 
 export default HomePage;

@@ -4,9 +4,18 @@ import "./LoginPage.css";
 
 function LoginPage() {
   return (
-    <div className="LoginPage">
-      <h1> Placement Portal</h1>
-      <LoginForm />
+    <div className="container">
+      <div className="LoginPage">
+        <div className="logo">
+          <img src={require("../../logos/LogoBanner.png")} alt="" />
+        </div>
+        <div className="login-form">
+          <LoginForm />
+        </div>
+      </div>
+      <div className="footer">
+        <div className="footer-text">Made with ❤️ in India.</div>{" "}
+      </div>
     </div>
   );
 }

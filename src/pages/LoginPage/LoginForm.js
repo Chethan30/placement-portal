@@ -1,11 +1,21 @@
 import React, { useState, useContext } from "react";
 import { LoginContext } from "../../context/LoginContext";
+import { useNavigate } from "react-router-dom";
 import "./LoginForm.css";
+// import axios from "../../api/axios";
 
 function LoginForm() {
-  const { username, setUsername, setToken } = useContext(LoginContext);
+  let navigate = useNavigate();
+
+  const { username, setUsername, setToken, setSuccess } =
+    useContext(LoginContext);
 
   const [password, setPassword] = useState("");
+
+  // const userRef = useRef();
+  // useEffect(() => {
+  //   userRef.current.focus();
+  // }, []);
 
   const UsernameHandler = (event) => {
     setUsername(event.target.value);
@@ -14,8 +24,9 @@ function LoginForm() {
     setPassword(event.target.value);
   };
 
-  const onSubmitHandler = (event) => {
+  const onSubmitHandler = async (event) => {
     event.preventDefault();
+    setSuccess(true);
     console.log(username, password);
 
     const opts = {
@@ -40,6 +51,8 @@ function LoginForm() {
         console.log(data.data.Token);
         setToken(data.data.Token);
         sessionStorage.setItem("token", data.data.Token);
+
+        navigate("/home");
       })
       .catch((error) => {
         console.log("", error);
@@ -48,13 +61,16 @@ function LoginForm() {
 
   return (
     <form action="" onSubmit={onSubmitHandler}>
+      <h2 className="sign-in"> Sign In</h2>
       <label htmlFor="username" className="form-label">
         Username
       </label>
       <input
         type="text"
         className="form-input"
+        value={username}
         onChange={UsernameHandler}
+        placeholder="Username"
         required
       />
       <br />
@@ -64,11 +80,15 @@ function LoginForm() {
       <input
         type="password"
         className="form-input"
+        value={password}
         onChange={PasswordHandler}
+        placeholder="Password"
         required
       />
       <br />
-      <button type="submit">Log In</button>
+      <button type="submit" className="login-button">
+        Log In
+      </button>
     </form>
   );
 }
