@@ -6,12 +6,12 @@ import CVScorer from "../CVScorer/CVScorer";
 import Applications from "../ApplicationsPage/Applications";
 import Profile from "../Profile/Profile";
 import HomePage from "./HomePage";
-function HomeScreen() {
+function HomeScreen(props) {
   return (
     <div>
       <NavBar />
       <Routes>
-        <Route path="home" element={<HomePage />} />
+        <Route path="home" element={<HomePage onLogout={props.onLogout} />} />
         <Route path="cvscorer" element={<CVScorer />} />
         <Route path="applications" element={<Applications />} />
         <Route path="profile" element={<Profile />} />

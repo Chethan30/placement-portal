@@ -1,8 +1,13 @@
 import React from "react";
 import "./HomePage.css";
 
-function HomePage() {
-  return <div>HomePage</div>;
+function HomePage(props) {
+  return (
+    <div>
+      <div>HomePage</div>
+      <button onClick={props.onLogout}>Logout</button>
+    </div>
+  );
 }
 
 export default HomePage;

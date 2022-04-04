@@ -1,20 +1,21 @@
 import React from "react";
 import LoginForm from "./LoginForm";
-import "./LoginPage.css";
+import logoBanner from "../../assets/LogoBanner.png";
+import styles from "./LoginPage.module.css";
 
 function LoginPage() {
   return (
     <div className="container">
-      <div className="LoginPage">
-        <div className="logo">
-          <img src={require("../../logos/LogoBanner.png")} alt="" />
+      <div className={styles.LoginPage}>
+        <div className={styles.logo}>
+          <img src={logoBanner} alt="" />
         </div>
-        <div className="login-form">
+        <div className={styles["login-form"]}>
           <LoginForm />
         </div>
       </div>
-      <div className="footer">
-        <div className="footer-text">Made with ❤️ in India.</div>{" "}
+      <div className={styles.footer}>
+        <div className={styles["footer-text"]}>Made with ❤️ in India.</div>{" "}
       </div>
     </div>
   );

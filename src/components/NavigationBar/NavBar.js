@@ -1,30 +1,30 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
-import { LoginContext } from "../../context/LoginContext";
-import "./NavBar.css";
+import AuthContext from "../../context/auth-context";
+import styles from "./NavBar.module.css";
 function NavBar() {
-  const { username } = useContext(LoginContext);
+  const { username } = useContext(AuthContext);
 
   return (
     <nav>
-      <Link to="home" className="home">
-        <li className="logo-nav">Placement Portal</li>
+      <Link to="home" className={styles.home}>
+        <li className={styles["logo-nav"]}>Placement Portal</li>
       </Link>
-      <ul className="menu">
-        <Link to="cvscorer" className="cvscorer">
+      <ul className={styles.menu}>
+        <Link to="cvscorer" className={styles.cvscorer}>
           <li>CVScorer</li>
         </Link>
-        <Link to="applications" className="applications">
+        <Link to="applications" className={styles.applications}>
           <li>Applications</li>
         </Link>
-        <Link to="notifications" className="notifications">
+        <Link to="notifications" className={styles.notifications}>
           <li>Notifications</li>
         </Link>
-        <Link to="profile" className="profile">
-          <li>{username}</li>
+        <Link to="profile" className={styles.profile}>
+          <li>{username ? username[0].toUpperCase() : null}</li>
         </Link>
       </ul>
-      <button className="hamburger is-active">
+      <button className={`${styles.hamburger} ${styles["is-active"]}`}>
         <span></span>
         <span></span>
         <span></span>
