@@ -1,0 +1,91 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+nav {
+  /* position: fixed; */
+  top: 0;
+  left: 0;
+  /* z-index: 99; */
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 5em;
+  padding: 0.5em 1em;
+  color: white;
+  background-image: linear-gradient(180deg, #60efff 0%, #0061ff 100%);
+  border-radius: 0px 0px 0.5em 0.5em;
+}
+
+.logo-nav {
+  font-family: "Poppins";
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.menu {
+  width: 75%;
+  list-style: none;
+  display: flex;
+  justify-content: flex-end;
+  /* display: block; */
+}
+
+.hamburger {
+  display: none;
+  /* position: relative;
+  z-index: 1;
+
+  user-select: none;
+  appearance: none;
+  border: none;
+  outline: none;
+  background: none;
+  cursor: pointer; */
+}
+
+/* .hamburger span {
+  display: block;
+  position: relative;
+  width: 2em;
+  height: 0.25em;
+  margin-bottom: 0.25em;
+
+  background-color: white;
+  border-radius: 6px;
+  z-index: 1;
+  transform-origin: 0 0;
+  transition: 0.5s;
+}
+
+.hamburger:hover span:nth-child(2),
+.hamburger.is-active span:nth-child(2) {
+  transform: translateX(5px);
+}
+.hamburger:hover span:nth-child(3),
+.hamburger.is-active span:nth-child(3) {
+  transform: translateX(-5px);
+} */
+
+.cvscorer,
+.profile,
+.home,
+.applications,
+.notifications {
+  text-decoration: none;
+  color: white;
+  padding: 10px 20px;
+  margin: 0 10px;
+}
+
+.home {
+  color: white;
+  font-weight: bold;
+  font-size: 1.2em;
+  text-decoration: none;
+  list-style: none;
+}

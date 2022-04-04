@@ -1,30 +1,22 @@
 import "./App.css";
 import LoginPage from "./pages/LoginPage/LoginPage";
-import HomePage from "./pages/HomePage/HomePage";
-import { LoginContext } from "./context/LoginContext";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import { useState } from "react";
-import CVScorer from "./pages/CVScorer/CVScorer";
-import Applications from "./pages/ApplicationsPage/Applications";
-import Profile from "./pages/Profile/Profile";
+import HomeScreen from "./pages/HomeScreen/HomeScreen";
+import { BrowserRouter as Router } from "react-router-dom";
+import { useContext } from "react";
+import AuthContext from "./context/auth-context";
 
 function App() {
-  // const [showProfile, setShowProfile] = useState(false);
-  const [username, setUsername] = useState("");
-  const [token, setToken] = useState("");
+  const { success, logoutHandler } = useContext(AuthContext);
 
   return (
-    <Router>
-      <LoginContext.Provider value={{ username, setUsername, setToken }}>
-        {token ? <HomePage /> : <LoginPage />}
-      </LoginContext.Provider>
-      <Routes>
-        {/* <Route path="home" element={<HomePage />} /> */}
-        <Route path="cvscorer" element={<CVScorer />} />
-        <Route path="applications" element={<Applications />} />
-        <Route path="profile" element={<Profile />} />
-      </Routes>
-    </Router>
+    <div className="main">
+      <div className="container-right">
+        <Router>
+          {success && <HomeScreen onLogout={logoutHandler} />}
+          {!success && <LoginPage />}
+        </Router>
+      </div>
+    </div>
   );
 }
 
