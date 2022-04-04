@@ -1,11 +1,11 @@
 import React from "react";
-import "./HomeScreen.css";
 import NavBar from "../../components/NavigationBar/NavBar";
 import { Route, Routes } from "react-router-dom";
 import CVScorer from "../CVScorer/CVScorer";
 import Applications from "../ApplicationsPage/Applications";
 import Profile from "../Profile/Profile";
 import HomePage from "./HomePage";
+// import styles from "./HomeScreen.module.css";
 function HomeScreen(props) {
   return (
     <div>
