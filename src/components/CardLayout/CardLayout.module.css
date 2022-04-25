@@ -1,0 +1,25 @@
+.outer-layout {
+  /* background-color: yellow; */
+  display: flex;
+}
+
+.layout {
+  display: grid;
+  margin: 0 auto;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 30px;
+  padding: 1rem;
+  /* border: 2px solid red; */
+}
+
+@media screen and (max-width: 1024px) {
+  .layout {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+@media screen and (max-width: 512px) {
+  .layout {
+    grid-template-columns: 1fr;
+    grid-gap: 50px;
+  }
+}
