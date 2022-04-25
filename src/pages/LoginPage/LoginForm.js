@@ -45,16 +45,21 @@ function LoginForm() {
          {
         if (response.status === 200) {
           console.log(response);
+          console.log(response.data);
+        console.log(response.data.access_token);
+        sessionStorage.setItem("token", response.data.access_token);
+        setSuccess(true);
+        navigate("/home");
           return response;
         } else alert("Error!");
       })
-      .then((data) => {
-        console.log(data);
-        console.log(data.access_token);
-        sessionStorage.setItem("token", data.access_token);
-        setSuccess(true);
-        navigate("/home");
-      })
+      // .then((data) => {
+      //   console.log(data);
+      //   console.log(data.access_token);
+      //   sessionStorage.setItem("token", data.access_token);
+      //   setSuccess(true);
+      //   navigate("/home");
+      // })
       .catch((error) => {
         console.log("", error);
       });
