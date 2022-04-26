@@ -1,0 +1,41 @@
+/* .main {
+  min-height: 10vh;
+  color: #adafb6;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+   background: #f9fbff;
+}  */
+
+.text {
+  margin-bottom: 100px;
+  margin-left: -20px;
+  /* position: absolute;
+  top: 35%;
+  left: 50%;
+  margin-left: -55px;
+  margin-top: -39px; */
+}
+
+.main {
+  min-height: 10vh;
+  color: #adafb6;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.loader {
+  position: absolute; /* child */
+  top: 50%;
+  left: 50%;
+  margin-left: -39px; /* half of width*/
+  margin-top: -39px; /* half of height */
+}
+
+/* @media  screen and (min-width: 720px) {
+  text
+} */

@@ -1,14 +1,14 @@
 import classes from "../Profile.module.css";
-import {useEffect, useState} from "react";
-import {getProfileDetails} from "../apihandler";
+import { useEffect, useState } from "react";
+import { getProfileDetails } from "../apihandler";
 
 function EducationDetails() {
   const [EduDets, setEduDets] = useState([]);
-   const collegeName = "Dayananada Sagar College of Engineering";
+  const collegeName = "Dayananada Sagar College of Engineering";
 
   useEffect(() => {
-    getProfileDetails() .then(function(response )
-    {
+    getProfileDetails()
+      .then(function (response) {
         if (response.status === 200) {
           setEduDets(response.data);
           return response;
@@ -16,12 +16,11 @@ function EducationDetails() {
       })
       .catch((error) => {
         console.log("", error);
-      })
-    },[]);
+      });
+  }, []);
 
-    return (
-
-     <div className={classes.edudetails}>
+  return (
+    <div className={classes.edudetails}>
       <span className={classes.heading}> Education Information </span>
       <span className={classes.subheading}>
         College : <span className={classes.data}>{collegeName}</span>
