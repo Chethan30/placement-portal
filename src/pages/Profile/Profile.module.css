@@ -1,0 +1,104 @@
+* {
+  font-family: "Poppins";
+}
+
+/* Personal CSS starts here! */
+
+.personal {
+  margin-top: 5rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  padding: 3rem;
+  background-color: #f5f5f5;
+  border-radius: 1rem;
+  box-shadow: 5px 5px 5px 1px rgba(177, 177, 177, 0.5);
+}
+
+/* .personal::after {
+  content: "";
+  border: 5px solid #0a70ff;
+} */
+
+.profile-picture {
+  border-radius: 10%;
+  width: 10rem;
+  height: 10rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: white;
+  /* border: 6px solid rgb(0, 123, 255); */
+  overflow: hidden;
+}
+
+.profile-picture img {
+  transform: scale(1);
+}
+
+.general-details {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.name {
+  font-weight: 700;
+  font-size: 1.8rem;
+}
+
+.usn {
+  font-weight: 500;
+  font-size: 1.2rem;
+  color: rgb(80, 80, 80);
+}
+
+.email {
+  font-weight: 500;
+  font-size: 1rem;
+  color: rgb(0, 123, 255);
+}
+
+.phone {
+  font-weight: 500;
+  font-size: 1rem;
+  color: rgb(0, 89, 184);
+}
+
+/* Educational CSS start here !*/
+
+.educational {
+  margin-top: 3rem;
+  padding: 3rem;
+  background-color: #f5f5f5;
+  border-radius: 1rem;
+  box-shadow: 5px 5px 5px 1px rgba(177, 177, 177, 0.5);
+}
+
+/* .educational::after {
+  content: "";
+  border: 5px solid #0a70ff;
+} */
+
+.edudetails {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.heading {
+  font-weight: 700;
+  font-size: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.subheading {
+  margin-bottom: 0.7rem;
+  font-size: 1rem;
+  color: rgb(69, 69, 69);
+}
+
+.data {
+  font-weight: 600;
+  color: rgb(0, 89, 184);
+}
