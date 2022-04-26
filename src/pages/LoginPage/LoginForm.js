@@ -3,6 +3,8 @@ import AuthContext from "../../context/auth-context";
 import { useNavigate } from "react-router-dom";
 import styles from "./LoginForm.module.css";
 
+import {postLogin} from "./apihandler";
+
 function LoginForm() {
   let navigate = useNavigate();
 
@@ -31,25 +33,56 @@ function LoginForm() {
       }),
     };
 
-    // http://restapi.adequateshop.com/api/authaccount/login
+    const datal = {
+        username: username,
+        password: password,
+      }
 
-    fetch("http://127.0.0.1:5000/api/login", opts)
-      .then((response) => {
+    postLogin(datal)
+      .then(function(response)
+        // Process response and
+        // Do something with the UI;
+         {
         if (response.status === 200) {
           console.log(response);
-          return response.json();
-        } else alert("Error!");
-      })
-      .then((data) => {
-        console.log(data);
-        console.log(data.access_token);
-        sessionStorage.setItem("token", data.access_token);
+          console.log(response.data);
+        console.log(response.data.access_token);
+        sessionStorage.setItem("token", response.data.access_token);
         setSuccess(true);
         navigate("/home");
+          return response;
+        } else alert("Error!");
       })
+      // .then((data) => {
+      //   console.log(data);
+      //   console.log(data.access_token);
+      //   sessionStorage.setItem("token", data.access_token);
+      //   setSuccess(true);
+      //   navigate("/home");
+      // })
       .catch((error) => {
         console.log("", error);
       });
+
+    // http://restapi.adequateshop.com/api/authaccount/login
+
+    // fetch("http://127.0.0.1:5000/api/login", opts)
+    //   .then((response) => {
+    //     if (response.status === 200) {
+    //       console.log(response);
+    //       return response.json();
+    //     } else alert("Error!");
+    //   })
+    //   .then((data) => {
+    //     console.log(data);
+    //     console.log(data.access_token);
+    //     sessionStorage.setItem("token", data.access_token);
+    //     setSuccess(true);
+    //     navigate("/home");
+    //   })
+    //   .catch((error) => {
+    //     console.log("", error);
+    //   });
   };
 
   return (

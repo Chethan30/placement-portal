@@ -1,18 +1,32 @@
 import classes from "../Profile.module.css";
-const GeneralDetails = (props) => {
-  const name = "Will Smith";
-  const usn = "1DS18CS001";
-  const email = "slapchris@will.com";
-  const phone = "+1 856 896 3256";
+import {getProfileDetails} from "../../Profile/apihandler";
+import {useEffect, useState} from "react";
 
-  return (
+
+function GeneralDetails() {
+  const [GenDets, setGenDets] = useState([]);
+  useEffect(() => {
+    getProfileDetails() .then(function(response )
+    {
+        if (response.status === 200) {
+          setGenDets(response.data);
+          return response;
+        } else alert("Error!");
+      })
+      .catch((error) => {
+        console.log("", error);
+      })
+    },[]);
+
+    return (
+
     <div className={classes["general-details"]}>
-      <span className={classes.name}>{name}</span>
-      <span className={classes.usn}>{usn}</span>
-      <span className={classes.email}>{email}</span>
-      <span className={classes.phone}>{phone}</span>
+      <span className={classes.name}>{GenDets.first_name} {GenDets.last_name}</span>
+      <span className={classes.usn}>{GenDets.username}</span>
+      <span className={classes.email}>{GenDets.email_id}</span>
+      <span className={classes.phone}>{GenDets.phone_number}</span>
     </div>
   );
-};
+}
 
 export default GeneralDetails;
