@@ -34,7 +34,9 @@
   width: 90px;
   margin-left: 180px;
   border-radius: 0.5rem;
+  font-size: 0.9rem;
   font-weight: 500;
+  padding: 0.1rem;
 }
 
 .lowercard {
@@ -54,6 +56,9 @@
 }
 
 .jobrole {
+  width: 200px;
+  height: 26px;
+  overflow: hidden;
   font-family: "Poppins";
   font-weight: bold;
   overflow: hidden;

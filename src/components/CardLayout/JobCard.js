@@ -5,14 +5,15 @@ import JobType from "../../assets/JobTime.png";
 
 function JobCard() {
   const companyName = "Name of the Company";
-  const jobRole = "Job Role";
+  const jobRole = "Associate Software Developer";
   const jobType = "Job Type";
+  const timeLeft = "X";
 
   return (
     <div className={styles.card}>
       <div className={styles.uppercard}>
         <span className={styles.companyname}> {companyName} </span>
-        <div className={styles.timer}>00:00:00</div>
+        <div className={styles.timer}>{timeLeft} day left</div>
         {/* Insert Timer Component here */}
       </div>
       <div className={styles.lowercard}>
