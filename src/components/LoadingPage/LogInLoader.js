@@ -22,7 +22,7 @@ function LogInLoader() {
         <div></div>
         <div></div>
       </div>
-      <div class="box">
+      <div className="box">
         <div></div>
         <div></div>
         <div></div>

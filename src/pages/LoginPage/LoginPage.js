@@ -8,12 +8,12 @@ function LoginPage() {
   const [isLoading, setIsLoading] = useState(false);
   console.log("Is loading status", isLoading);
 
-  const content = isLoading ? (
+  const logInContent = isLoading ? (
     <LoginLoading />
   ) : (
     <div className={styles.LoginPage}>
       <div className={styles.logo}>
-        <img src={logoBanner} alt="" />
+        <img className={styles.img} src={logoBanner} alt="" />
       </div>
       <div className={styles["login-form"]}>
         <LoginForm loadingState={setIsLoading} />
@@ -23,7 +23,7 @@ function LoginPage() {
 
   return (
     <div className="container">
-      {content}
+      {logInContent}
       <div className={styles.footer}>
         <div className={styles["footer-text"]}>Made with ❤️ in India.</div>{" "}
       </div>

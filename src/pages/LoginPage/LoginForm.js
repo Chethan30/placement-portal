@@ -1,4 +1,4 @@
-import React, { useState, useContext, useCallback, useEffect } from "react";
+import React, { useState, useContext, useCallback } from "react";
 import AuthContext from "../../context/auth-context";
 import { useNavigate } from "react-router-dom";
 import styles from "./LoginForm.module.css";
@@ -55,31 +55,30 @@ function LoginForm(props) {
     // }
   };
 
-  const logInHandler = useCallback(async (datal) => {
-    try {
-      const response = await postLogin(datal);
-      if (response.status === 200) {
-        props.loadingState(false);
-        console.log(response);
-        console.log(response.data);
-        console.log(response.data.access_token);
-        sessionStorage.setItem("token", response.data.access_token);
-        setSuccess(true);
+  const logInHandler = useCallback(
+    async (datal) => {
+      try {
+        const response = await postLogin(datal);
+        if (response.status === 200) {
+          props.loadingState(false);
+          console.log(response);
+          console.log(response.data);
+          console.log(response.data.access_token);
+          sessionStorage.setItem("token", response.data.access_token);
+          setSuccess(true);
 
-        navigate("/home");
-        return response;
-      } else throw new Error("Something went wrong!");
-    } catch (error) {
-      console.log("", error);
-    }
-  }, []);
-
-  useEffect(() => {
-    logInHandler();
-  }, [logInHandler]);
+          navigate("/home");
+          return response;
+        } else throw new Error("Something went wrong!");
+      } catch (error) {
+        console.log("", error);
+      }
+    },
+    [setSuccess, navigate, props]
+  );
 
   return (
-    <form action="" onSubmit={onSubmitHandler}>
+    <form className={styles.loginForm} action="" onSubmit={onSubmitHandler}>
       <h2 className={styles["sign-in"]}> Sign In</h2>
       <label htmlFor="username" className={styles["form-label"]}>
         Username
