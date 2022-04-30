@@ -6,8 +6,10 @@ import JobType from "../../assets/JobTime.png";
 function JobCard(props) {
   const companyName = props.companyName;
   const jobRole = props.jobRole;
+
   const jobType = props.jobType;
   const timeLeft = props.timeLeft;
+
 
   return (
     <div className={styles.card}>
