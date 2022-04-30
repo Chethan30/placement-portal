@@ -1,4 +1,4 @@
-form {
+.loginForm {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -63,7 +63,10 @@ form {
 }
 
 @media (max-width: 425px) {
-  form {
+  .loginForm {
     padding: 1em 2em 1em 2em;
+  }
+  .form-input {
+    max-width: 15em;
   }
 }
