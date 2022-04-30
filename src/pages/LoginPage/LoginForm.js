@@ -1,11 +1,10 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useCallback } from "react";
 import AuthContext from "../../context/auth-context";
 import { useNavigate } from "react-router-dom";
 import styles from "./LoginForm.module.css";
+import { postLogin } from "./apihandler";
 
-import {postLogin} from "./apihandler";
-
-function LoginForm() {
+function LoginForm(props) {
   let navigate = useNavigate();
 
   const { username, setUsername, setSuccess } = useContext(AuthContext);
@@ -18,75 +17,68 @@ function LoginForm() {
     setPassword(event.target.value);
   };
 
-  const onSubmitHandler = async (event) => {
-    event.preventDefault();
-
-    // console.log(username, password);
-    const opts = {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        username: username,
-        password: password,
-      }),
-    };
-
-    const datal = {
-        username: username,
-        password: password,
-      }
-
-    postLogin(datal)
-      .then(function(response)
-        // Process response and
-        // Do something with the UI;
-         {
-        if (response.status === 200) {
-          console.log(response);
-          console.log(response.data);
-        console.log(response.data.access_token);
-        sessionStorage.setItem("token", response.data.access_token);
-        setSuccess(true);
-        navigate("/home");
-          return response;
-        } else alert("Error!");
-      })
-      // .then((data) => {
-      //   console.log(data);
-      //   console.log(data.access_token);
-      //   sessionStorage.setItem("token", data.access_token);
-      //   setSuccess(true);
-      //   navigate("/home");
-      // })
-      .catch((error) => {
-        console.log("", error);
-      });
-
-    // http://restapi.adequateshop.com/api/authaccount/login
-
-    // fetch("http://127.0.0.1:5000/api/login", opts)
-    //   .then((response) => {
-    //     if (response.status === 200) {
-    //       console.log(response);
-    //       return response.json();
-    //     } else alert("Error!");
-    //   })
-    //   .then((data) => {
-    //     console.log(data);
-    //     console.log(data.access_token);
-    //     sessionStorage.setItem("token", data.access_token);
-    //     setSuccess(true);
-    //     navigate("/home");
-    //   })
-    //   .catch((error) => {
-    //     console.log("", error);
-    //   });
+  const datal = {
+    username: username,
+    password: password,
   };
 
+  const onSubmitHandler = async (event) => {
+    event.preventDefault();
+    props.loadingState(true);
+
+    logInHandler(datal);
+    // console.log(username, password);
+    // const opts = {
+    //   method: "POST",
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   },
+    //   body: JSON.stringify({
+    //     username: username,
+    //     password: password,
+    //   }),
+    // };
+    // try {
+    //   const response = await postLogin(datal);
+    //   if (response.status === 200) {
+    //     console.log(response);
+    //     console.log(response.data);
+    //     console.log(response.data.access_token);
+    //     sessionStorage.setItem("token", response.data.access_token);
+    //     setSuccess(true);
+    //     props.loadingState(false);
+    //     navigate("/home");
+    //     return response;
+    //   } else throw new Error("Something went wrong!");
+    // } catch (error) {
+    //   console.log("", error);
+    // }
+  };
+
+  const logInHandler = useCallback(
+    async (datal) => {
+      try {
+        const response = await postLogin(datal);
+        if (response.status === 200) {
+          props.loadingState(false);
+          console.log(response);
+          console.log(response.data);
+          console.log(response.data.access_token);
+          sessionStorage.setItem("token", response.data.access_token);
+          setSuccess(true);
+
+          navigate("/home");
+          return response;
+        } else throw new Error("Something went wrong!");
+      } catch (error) {
+        console.log("", error);
+      }
+    },
+    [setSuccess, navigate, props]
+  );
+
   return (
-    <form action="" onSubmit={onSubmitHandler}>
+    <form className={styles.loginForm} action="" onSubmit={onSubmitHandler}>
       <h2 className={styles["sign-in"]}> Sign In</h2>
       <label htmlFor="username" className={styles["form-label"]}>
         Username
