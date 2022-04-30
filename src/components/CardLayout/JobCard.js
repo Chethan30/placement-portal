@@ -3,10 +3,10 @@ import styles from "./JobCard.module.css";
 import JobRole from "../../assets/JobRole2.svg";
 import JobType from "../../assets/JobTime.png";
 
-function JobCard() {
-  const companyName = "Name of the Company";
-  const jobRole = "Job Role";
-  const jobType = "Job Type";
+function JobCard(props) {
+  const companyName = props.companyName;
+  const jobRole = props.jobRole;
+  const jobType = props.JobType;
 
   return (
     <div className={styles.card}>
