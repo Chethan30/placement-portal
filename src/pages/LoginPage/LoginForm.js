@@ -25,34 +25,7 @@ function LoginForm(props) {
   const onSubmitHandler = async (event) => {
     event.preventDefault();
     props.loadingState(true);
-
     logInHandler(datal);
-    // console.log(username, password);
-    // const opts = {
-    //   method: "POST",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    //   body: JSON.stringify({
-    //     username: username,
-    //     password: password,
-    //   }),
-    // };
-    // try {
-    //   const response = await postLogin(datal);
-    //   if (response.status === 200) {
-    //     console.log(response);
-    //     console.log(response.data);
-    //     console.log(response.data.access_token);
-    //     sessionStorage.setItem("token", response.data.access_token);
-    //     setSuccess(true);
-    //     props.loadingState(false);
-    //     navigate("/home");
-    //     return response;
-    //   } else throw new Error("Something went wrong!");
-    // } catch (error) {
-    //   console.log("", error);
-    // }
   };
 
   const logInHandler = useCallback(

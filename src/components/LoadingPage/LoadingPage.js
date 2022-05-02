@@ -1,8 +1,8 @@
 import React from "react";
 import LoginLoader from "../../components/LoadingPage/LogInLoader";
 import styles from "./LoadingPage.module.css";
-function LoadingPage() {
-  const content = "Loggin In...";
+function LoadingPage(props) {
+  const content = props.loadMessage;
 
   return (
     <div className={styles.main}>

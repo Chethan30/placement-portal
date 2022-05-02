@@ -6,10 +6,10 @@ import styles from "./LoginPage.module.css";
 
 function LoginPage() {
   const [isLoading, setIsLoading] = useState(false);
-  console.log("Is loading status", isLoading);
+  console.log("Is loading status at login page", isLoading);
 
   const logInContent = isLoading ? (
-    <LoginLoading />
+    <LoginLoading loadMessage="Logging In..." />
   ) : (
     <div className={styles.LoginPage}>
       <div className={styles.logo}>

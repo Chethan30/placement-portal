@@ -1,37 +1,38 @@
-import React, {useEffect, useState} from "react";
+import React from "react";
 import styles from "./CardLayout.module.css";
 import JobCard from "./JobCard";
-import {getJobList} from "./apihandler";
+// import { getJobList } from "./apihandler";
 
-function CardLayout() {
-
-    const [JobList, setJobList] = useState([]);
-
-  useEffect(() => {
-    getJobList() .then(function(response )
-    {
-        if (response.status === 200) {
-          setJobList(response.data);
-          return response;
-        } else alert("Error!");
-      })
-      .catch((error) => {
-        console.log("", error);
-      })
-    },[]);
-
-    console.log("Jobsss", JobList);
+function CardLayout(props) {
+  // console.log("props here", props);
 
   return (
     <div className={styles["outer-layout"]}>
       <div className={styles.layout}>
+        {props.JobList.active_jobs
+          ? props.JobList.active_jobs.map((jobID) => {
+              // console.log(jobID);
+
+              return (
+                <JobCard
+                  key={Math.random()}
+                  jobID={jobID}
+                  jobRole={jobID.comp_address}
+                  jobType={jobID.job_type}
+                  endDate={jobID.end_date}
+                  companyName={jobID.company_name}
+                />
+              );
+            })
+          : ""}
+
+        {/* <JobCard />
         <JobCard />
         <JobCard />
         <JobCard />
         <JobCard />
         <JobCard />
-        <JobCard />
-        <JobCard />
+          <JobCard />*/}
       </div>
     </div>
   );

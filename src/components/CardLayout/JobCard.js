@@ -6,16 +6,16 @@ import JobType from "../../assets/JobTime.png";
 function JobCard(props) {
   const companyName = props.companyName;
   const jobRole = props.jobRole;
-
+  const jobID = props.jobID;
   const jobType = props.jobType;
   const timeLeft = props.timeLeft;
-
+  const endDate = props.endDate;
 
   return (
     <div className={styles.card}>
       <div className={styles.uppercard}>
         <span className={styles.companyname}> {companyName} </span>
-        <div className={styles.timer}>{timeLeft} day left</div>
+        <div className={styles.timer}>{timeLeft} days left</div>
         {/* Insert Timer Component here */}
       </div>
       <div className={styles.lowercard}>
