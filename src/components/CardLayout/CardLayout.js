@@ -24,14 +24,6 @@ function CardLayout(props) {
               );
             })
           : ""}
-
-        {/* <JobCard />
-        <JobCard />
-        <JobCard />
-        <JobCard />
-        <JobCard />
-        <JobCard />
-          <JobCard />*/}
       </div>
     </div>
   );
