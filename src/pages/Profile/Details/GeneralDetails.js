@@ -1,21 +1,7 @@
 import classes from "../Profile.module.css";
-import { getProfileDetails } from "../../Profile/apihandler";
-import { useEffect, useState } from "react";
 
-function GeneralDetails() {
-  const [GenDets, setGenDets] = useState([]);
-  useEffect(() => {
-    getProfileDetails()
-      .then(function (response) {
-        if (response.status === 200) {
-          setGenDets(response.data);
-          return response;
-        } else alert("Error!");
-      })
-      .catch((error) => {
-        console.log("", error);
-      });
-  }, []);
+function GeneralDetails(props) {
+  const GenDets = props.GenDets;
 
   return (
     <div className={classes["general-details"]}>

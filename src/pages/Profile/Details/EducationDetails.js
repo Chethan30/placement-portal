@@ -1,23 +1,9 @@
 import classes from "../Profile.module.css";
-import { useEffect, useState } from "react";
-import { getProfileDetails } from "../apihandler";
 
-function EducationDetails() {
-  const [EduDets, setEduDets] = useState([]);
-  const collegeName = "Dayananada Sagar College of Engineering";
-
-  useEffect(() => {
-    getProfileDetails()
-      .then(function (response) {
-        if (response.status === 200) {
-          setEduDets(response.data);
-          return response;
-        } else alert("Error!");
-      })
-      .catch((error) => {
-        console.log("", error);
-      });
-  }, []);
+function EducationDetails(props) {
+  const EduDets = props.EduDets;
+  const collegeName = "Dayananda Sagar College of Engineering";
+  console.log(EduDets);
 
   return (
     <div className={classes.edudetails}>

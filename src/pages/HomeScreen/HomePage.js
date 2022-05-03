@@ -3,6 +3,7 @@ import styles from "./HomePage.module.css";
 import Wrapper from "../../components/UI/Wrapper";
 import LoadingScreen from "../../components/LoadingPage/LoadingPage";
 import CardLayout from "../../components/CardLayout/CardLayout";
+import SearchBar from "../../components/SearchBar/SearchBar";
 import { getJobList } from "../../components/CardLayout/apihandler";
 
 function HomePage(props) {
@@ -16,7 +17,7 @@ function HomePage(props) {
         setJobCardLoading(false);
         setJobList(response.data);
         return response;
-      } else throw new Error("Something went wrong!");
+      } else throw new Error("Error in loading Jobs!");
     } catch (error) {
       console.log("", error);
     }
@@ -37,10 +38,13 @@ function HomePage(props) {
     <Wrapper>
       <div className={styles.bg}>
         <div>
-          <div>HomePage</div>
-          <button onClick={props.onLogout}>Logout</button>
+          {/* <div>HomePage</div> */}
+          <button onClick={props.onLogout} className={styles.logout}>
+            Logout
+          </button>
         </div>
-        <div> Search Bar Component Here</div>
+        {/* <div> Search Bar Component Here</div> */}
+        <SearchBar />
         {jobCardLayout}
       </div>
     </Wrapper>
