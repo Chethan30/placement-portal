@@ -1,10 +1,9 @@
 import React from "react";
 import styles from "./CardLayout.module.css";
 import JobCard from "./JobCard";
-// import { getJobList } from "./apihandler";
 
 function CardLayout(props) {
-  // console.log("props here", props);
+  console.log("props here", props);
 
   return (
     <div className={styles["outer-layout"]}>
