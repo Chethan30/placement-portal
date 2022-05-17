@@ -3,12 +3,13 @@ import styles from "./HomePage.module.css";
 import Wrapper from "../../components/UI/Wrapper";
 import LoadingScreen from "../../components/LoadingPage/LoadingPage";
 import CardLayout from "../../components/CardLayout/CardLayout";
-import SearchBar from "../../components/SearchBar/SearchBar";
+// import SearchBar from "../../components/SearchBar/SearchBar";
 import { getJobList } from "../../components/CardLayout/apihandler";
 
 function HomePage(props) {
   const [jobCardLoading, setJobCardLoading] = useState(false);
   const [JobList, setJobList] = useState([]);
+  // const [JobListArray, setJobListArray] = useState([]);
 
   const getJobHandler = async () => {
     try {
@@ -16,6 +17,7 @@ function HomePage(props) {
       if (response.status === 200) {
         setJobCardLoading(false);
         setJobList(response.data);
+
         return response;
       } else throw new Error("Error in loading Jobs!");
     } catch (error) {
@@ -32,6 +34,7 @@ function HomePage(props) {
   useEffect(() => {
     setJobCardLoading(true);
     getJobHandler();
+    // setJobListArray(JobList.active_jobs);
   }, []);
 
   return (
@@ -44,7 +47,7 @@ function HomePage(props) {
           </button>
         </div>
         {/* <div> Search Bar Component Here</div> */}
-        <SearchBar />
+        {/* <SearchBar updateSearchTerm={setJobListArray} /> */}
         {jobCardLayout}
       </div>
     </Wrapper>

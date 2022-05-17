@@ -22,7 +22,7 @@ function LoginForm(props) {
     password: password,
   };
 
-  const onSubmitHandler = async (event) => {
+  const onSubmitHandler = (event) => {
     event.preventDefault();
     props.loadingState(true);
     logInHandler(datal);
