@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import styles from "./JobCard.module.css";
 import JobRole from "../../assets/JobRole2.svg";
 import JobType from "../../assets/JobTime.png";
@@ -8,12 +8,13 @@ function JobCard(props) {
   const companyName = props.companyName;
   const jobRole = props.jobRole;
   const jobType = props.jobType;
+  const remainingDays = props.remainingDays;
 
-  let todayDate = new Date();
-  let endDate = new Date(props.endDate);
-  let difference = endDate.getTime() - todayDate.getTime();
-  let days = difference / (1000 * 3600 * 24);
-  const timeLeft = Math.round(days);
+  // let todayDate = new Date();
+  // let endDate = new Date(props.endDate);
+  // let difference = endDate.getTime() - todayDate.getTime();
+  // let days = difference / (1000 * 3600 * 24);
+  // const timeLeft = Math.round(days);
 
   let navigate = useNavigate();
 
@@ -27,7 +28,7 @@ function JobCard(props) {
     <div className={styles.card}>
       <div className={styles.uppercard}>
         <span className={styles.companyname}> {companyName} </span>
-        <div className={styles.timer}>{timeLeft} days left</div>
+        <div className={styles.timer}>{remainingDays} days left</div>
       </div>
       <div className={styles.lowercard}>
         <div>
