@@ -3,8 +3,7 @@ import styles from "./HomePage.module.css";
 import Wrapper from "../../components/UI/Wrapper";
 import LoadingScreen from "../../components/LoadingPage/LoadingPage";
 import CardLayout from "../../components/CardLayout/CardLayout";
-// import SearchBar from "../../components/SearchBar/SearchBar";
-import { getJobList } from "../../components/CardLayout/apihandler";
+import { getJobList } from "../../pages/apihandler";
 
 function HomePage(props) {
   const [jobCardLoading, setJobCardLoading] = useState(false);
