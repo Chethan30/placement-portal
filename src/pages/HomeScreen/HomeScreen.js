@@ -5,6 +5,7 @@ import CVScorer from "../CVScorer/CVScorer";
 // import Applications from "../ApplicationsPage/Applications";
 import Profile from "../Profile/Profile";
 import HomePage from "./HomePage";
+import AdminHome from "../Admin/AdminHome/AdminHome";
 import JobDescription from "../JobDescription/JobDescription";
 import ApplyPage from "../ApplyPage/ApplyPage";
 // import styles from "./HomeScreen.module.css";
@@ -14,6 +15,10 @@ function HomeScreen(props) {
       <NavBar />
       <Routes>
         <Route path="home" element={<HomePage onLogout={props.onLogout} />} />
+        <Route
+          path="adminhome"
+          element={<AdminHome onLogout={props.onLogout} />}
+        />
         <Route path="cvscorer" element={<CVScorer />} />
         <Route path="applications" element={<ApplyPage />} />
         <Route path="jobdescrption" element={<JobDescription />} />
