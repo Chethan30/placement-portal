@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Wrapper from "../../components/UI/Wrapper";
 import ProfileImage from "./ProfileImage";
-import { getProfileDetails } from "./apihandler";
+import { getProfileDetails } from "../../pages/apihandler";
 import GeneralDetails from "./Details/GeneralDetails";
 import EducationDetails from "./Details/EducationDetails";
 import LoadingPage from "../../components/LoadingPage/LoadingPage";
