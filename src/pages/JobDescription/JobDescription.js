@@ -1,20 +1,44 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import styles from "./JobDescription.module.css";
 import Wrapper from "../../components/UI/Wrapper";
 import FileHolder from "../../components/FileHolder/FileHolder";
+import {getJobDesc, getJobList} from "../apihandler";
+import LoadingScreen from "../../components/LoadingPage/LoadingPage";
+import CardLayout from "../../components/CardLayout/CardLayout";
 
 function JobDescription(props) {
-  const companyName = "Company Name";
-  const companyDescription =
-    "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Odio suscipit iste officiis deserunt ad possimus tempore optio laboriosam beatae debitis? Incidunt possimus commodi expedita dolores quas atque nihil veniam, dicta numquam laudantium, sint obcaecati odio delectus ut dolorem ea. Quaerat repellendus accusamus voluptates provident dolores! Ipsa perspiciatis quod obcaecati impedit.Description";
+
+  const [jobDescLoading, setJobDescLoading] = useState(false);
+  const [JobDesc, setJobDesc] = useState([]);
+  const getJobDescription = async () => {
+    try {
+      const response = await getJobDesc();
+      if (response.status === 200) {
+        setJobDescLoading(false);
+        setJobDesc(response.data);
+        return response;
+      } else throw new Error("Error!");
+    } catch (error) {
+      console.log("", error);
+    }
+  };
+
+  useEffect(() => {
+    setJobDescLoading(true);
+    getJobDescription();
+    // setJobListArray(JobList.active_jobs);
+  }, []);
+  const companyName = JobDesc.company_name;
+  const companyDescription = JobDesc.job_desc;
   const jobRole = "Job Role";
-  const jobType = "Job Type";
-  const jd = "JD file";
+  const jobType = JobDesc.job_type;
+  const jd = JobDesc.jd_link;
   const ctc = props.ctc ? props.ctc : "CTC in INR";
   const location = "Location";
-  const startDate = "Published Date";
-  const lastDaytoApply = "Last Day to Apply";
-  const miscAttachemnts = "Misc Attachments";
+  const startDate = JobDesc.start_date;
+  const lastDaytoApply = JobDesc.end_date;
+  const miscAttachemnts = JobDesc.extras;
+  const deptsAllowed = ["ECE","CSE", "ISE"]
 
   return (
     <Wrapper style={styles.jd}>
