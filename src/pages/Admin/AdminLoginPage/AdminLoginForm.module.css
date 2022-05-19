@@ -12,7 +12,7 @@
 }
 
 .changeHighlight:hover {
-  color: #086cff;
+  color: #ff5e69;
 }
 
 .loginForm {
@@ -22,7 +22,7 @@
   align-items: center;
   /* background-color: aquamarine; */
   padding: 3em 5em 3em 5em;
-  background: linear-gradient(180deg, #5eebff 0%, #086cff 100%);
+  background: linear-gradient(180deg, #ff5e69 0%, #086cff 100%);
   border-radius: 0.5em;
   box-shadow: 0.5em 0.5em 0.6em #0000002a;
 }

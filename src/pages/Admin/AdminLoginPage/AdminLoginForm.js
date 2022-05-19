@@ -1,11 +1,11 @@
 import React, { useState, useContext, useCallback } from "react";
-import AuthContext from "../../context/auth-context";
+import AuthContext from "../../../context/auth-context";
 import { useNavigate } from "react-router-dom";
-import styles from "./LoginForm.module.css";
-import { postLogin } from "./apihandler";
-import Wrapper from "../../components/UI/Wrapper";
+import styles from "./AdminLoginForm.module.css";
+import { postLogin } from "../../LoginPage/apihandler";
+import Wrapper from "../../../components/UI/Wrapper";
 
-function LoginForm(props) {
+function AdminLoginForm(props) {
   let navigate = useNavigate();
 
   const { username, setUsername, setSuccess } = useContext(AuthContext);
@@ -41,7 +41,7 @@ function LoginForm(props) {
           sessionStorage.setItem("token", response.data.access_token);
           setSuccess(true);
 
-          navigate("/home");
+          navigate("/adminhome");
           return response;
         } else throw new Error("Something went wrong!");
       } catch (error) {
@@ -51,15 +51,15 @@ function LoginForm(props) {
     [setSuccess, navigate, props]
   );
 
-  const changeUserHandler = (event) => {
-    props.setIsAdmin(true);
-    navigate("/adminlogin");
+  const changeUserHandler = () => {
+    props.setIsAdmin(false);
+    navigate("/login");
   };
 
   return (
     <Wrapper>
       <form className={styles.loginForm} action="" onSubmit={onSubmitHandler}>
-        <h2 className={styles["sign-in"]}> Sign In</h2>
+        <h2 className={styles["sign-in"]}> Admin </h2>
         <label htmlFor="username" className={styles["form-label"]}>
           Username
         </label>
@@ -89,11 +89,11 @@ function LoginForm(props) {
         </button>
       </form>
       <button className={styles.changeUser} onClick={changeUserHandler}>
-        Not a Student ?
+        Not an Admin ?{" "}
         <span className={styles.changeHighlight}> Click Here </span>
       </button>
     </Wrapper>
   );
 }
 
-export default LoginForm;
+export default AdminLoginForm;
