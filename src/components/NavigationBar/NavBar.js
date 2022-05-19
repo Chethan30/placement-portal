@@ -11,7 +11,7 @@ function NavBar() {
         <li className={styles["logo-nav"]}>Placement Portal</li>
       </Link>
       <ul className={styles.menu}>
-        <Link to="cvscorer" className={styles.cvscorer}>
+        {/* <Link to="cvscorer" className={styles.cvscorer}>
           <li>CVScorer</li>
         </Link>
         <Link to="applications" className={styles.applications}>
@@ -19,7 +19,7 @@ function NavBar() {
         </Link>
         <Link to="notifications" className={styles.notifications}>
           <li>Notifications</li>
-        </Link>
+        </Link> */}
         <Link to="profile" className={styles.profile}>
           <li>{username ? username[0].toUpperCase() : null}</li>
         </Link>

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import styles from "./JobDescription.module.css";
 import Wrapper from "../../components/UI/Wrapper";
 import FileHolder from "../../components/FileHolder/FileHolder";
@@ -6,6 +7,7 @@ import { getJobDesc } from "../apihandler";
 import LoadingScreen from "../../components/LoadingPage/LoadingPage";
 
 function JobDescription(props) {
+  let navigate = useNavigate();
   const [jobDescLoading, setJobDescLoading] = useState(false);
   const [JobDesc, setJobDesc] = useState([]);
   const getJobDescription = async () => {
@@ -29,17 +31,22 @@ function JobDescription(props) {
     // setJobListArray(JobList.active_jobs);
   }, []);
 
+  console.log(JobDesc);
   const companyName = JobDesc.company_name;
   const companyDescription = JobDesc.job_desc;
   const jobRole = "Job Role";
   const jobType = JobDesc.job_type;
   const jd = JobDesc.jd_link;
-  const ctc = props.ctc ? props.ctc : "CTC in INR";
-  const location = "Location";
+  const ctc = props.ctc ? props.ctc : ` ₹ ${JobDesc.ctc}`;
+  const location = JobDesc.location;
   const startDate = JobDesc.start_date;
   const lastDaytoApply = JobDesc.end_date;
   const miscAttachemnts = JobDesc.extras;
-  const deptsAllowed = ["ECE ", "CSE ", "ISE "];
+  const deptsAllowed = JobDesc.dept_allowed;
+
+  const onApplyHandler = () => {
+    navigate("/apply");
+  };
 
   return (
     <Wrapper style={styles.jd}>
@@ -79,7 +86,9 @@ function JobDescription(props) {
           <div> {lastDaytoApply} </div>
           <div className={styles["container-center"]}>
             {" "}
-            <button className={styles.apply}>Apply</button>{" "}
+            <button className={styles.apply} onClick={onApplyHandler}>
+              Apply
+            </button>
           </div>
         </div>
       )}
