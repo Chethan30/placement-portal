@@ -40,7 +40,7 @@ function HomePage(props) {
 	if(!window.location.hash) {
 		window.location = window.location + '#loaded';
 		window.location.reload();
-}
+  }
 
   return (
     <Wrapper>
@@ -57,6 +57,6 @@ function HomePage(props) {
       </div>
     </Wrapper>
   );
-}
+    }
 
 export default HomePage;
