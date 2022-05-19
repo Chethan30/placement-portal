@@ -14,7 +14,7 @@ function CardLayout(props) {
                 <JobCard
                   key={jobID.job_id}
                   jobID={jobID.job_id}
-                  jobRole={jobID.comp_address}
+                  jobRole={jobID.job_role}
                   jobType={jobID.job_type}
                   remainingDays={jobID.remaining_days}
                   companyName={jobID.company_name}

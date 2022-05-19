@@ -19,8 +19,8 @@ function JobCard(props) {
   let navigate = useNavigate();
 
   const onMoreHandler = () => {
-    console.log(props.jobID.job_id);
-    sessionStorage.setItem("current_jobID", props.jobID.job_id);
+    console.log(props.jobID);
+    sessionStorage.setItem("current_jobID", props.jobID);
     navigate("/jobdescrption");
   };
 
