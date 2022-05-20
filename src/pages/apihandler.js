@@ -22,3 +22,8 @@ export function applyForJob(resumeLink, jobId) {
   const params = { resume_link: resumeLink , job_id: jobId };
   return axiosClient.post("/jobs/apply", JSON.stringify(params));
 }
+
+export function getSubmittedApplications() {
+  // console.log(axiosClient.defaults.headers)
+  return axiosClient.get("/jobs/getApplications");
+}
