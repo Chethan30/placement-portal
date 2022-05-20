@@ -13,15 +13,19 @@ function NavBar() {
       <ul className={styles.menu}>
         {/* <Link to="cvscorer" className={styles.cvscorer}>
           <li>CVScorer</li>
-        </Link>
+        </Link> */}
         <Link to="applications" className={styles.applications}>
           <li>Applications</li>
         </Link>
-        <Link to="notifications" className={styles.notifications}>
+        {/* <Link to="notifications" className={styles.notifications}>
           <li>Notifications</li>
         </Link> */}
         <Link to="profile" className={styles.profile}>
-          <li>{username ? username[0].toUpperCase() : null}</li>
+          <li>
+            <div className={styles.profileIcon}>
+              {username ? username[0].toUpperCase() : null}
+            </div>
+          </li>
         </Link>
       </ul>
       <button className={`${styles.hamburger} ${styles["is-active"]}`}>
