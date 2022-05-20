@@ -6,12 +6,13 @@ import JobApplied from "../../assets/JobApplied.png";
 import JobCtc from "../../assets/JobCtc.png";
 
 function ApplicationsCard(props) {
-  const companyName = "Company Name";
-  const jobRole = "JobRole";
-  const jobTime = "JobTime";
-  const jobCtc = "JobCTC";
-  const jobAppl = "JobAppl";
-  const jobStatus = "JobStatus";
+  const companyName = props.companyName;
+  const jobRole =  props.jobRole;
+  //const jobTime = props.date;
+  const jobCtc = props.ctc;
+  const jobType = props.jobType;
+  const jobAppl = props.status;
+  const jobStatus = props.status;
 
   return (
     <div className={styles.container}>
@@ -30,7 +31,7 @@ function ApplicationsCard(props) {
       <div className={styles.sub2}>
         <div className={styles.jobtime}>
           <img className={styles.icon} src={JobTime} alt="" />
-          <span className={styles.data}> {jobTime}</span>
+          <span className={styles.data}> {jobType}</span>
         </div>
         <div className={styles.applied}>
           <img className={styles.icon} src={JobApplied} alt="" />
