@@ -1,0 +1,60 @@
+.container {
+  background-color: #fcfcfc;
+  min-width: 300px;
+  max-width: 920px;
+
+  margin-top: 1.5rem;
+  padding: 1rem;
+  border-radius: 8px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.title {
+  padding: 0.55rem;
+
+  color: #1078ff;
+  font-family: "Poppins";
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.status {
+  display: flex;
+  justify-content: center;
+  background-color: #e8e8e8;
+  color: #8a8a8a;
+  width: 90px;
+  margin-left: 1rem;
+  margin-top: 1rem;
+  border-radius: 0.5rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  padding: 0.1rem;
+}
+
+.sub1,
+.sub2 {
+  display: flex;
+  margin-left: 1rem;
+}
+
+.sub1 {
+  margin-bottom: 1rem;
+}
+
+.icon {
+  margin-right: 0.6rem;
+  width: 22px;
+  height: 22px;
+}
+
+.jobtime,
+.jobrole {
+  display: flex;
+}
+
+.applied,
+.ctc {
+  display: flex;
+  margin-left: 3rem;
+}
