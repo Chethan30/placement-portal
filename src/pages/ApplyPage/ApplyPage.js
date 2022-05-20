@@ -18,7 +18,6 @@ function ApplyPage() {
     if (!file) return "";
     const sotrageRef = ref(storage, `files/${file.name}`);
     const uploadTask = uploadBytesResumable(sotrageRef, file);
-
     uploadTask.on(
       "state_changed",
       (snapshot) => {
