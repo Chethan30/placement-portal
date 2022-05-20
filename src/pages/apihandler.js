@@ -17,3 +17,8 @@ export function getJobDesc(data) {
   const params = { job_id: data };
   return axiosClient.post("/jobs/getJobDescription", JSON.stringify(params));
 }
+
+export function applyForJob(resumeLink, jobId) {
+  const params = { resume_link: resumeLink , job_id: jobId };
+  return axiosClient.post("/jobs/apply", JSON.stringify(params));
+}
