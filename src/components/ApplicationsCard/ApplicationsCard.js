@@ -7,11 +7,11 @@ import JobCtc from "../../assets/JobCtc.png";
 
 function ApplicationsCard(props) {
   const companyName = props.companyName;
-  const jobRole =  props.jobRole;
+  const jobRole = props.jobRole;
   //const jobTime = props.date;
   const jobCtc = props.ctc;
   const jobType = props.jobType;
-  const jobAppl = props.status;
+  const jobAppl = props.date;
   const jobStatus = props.status;
 
   return (

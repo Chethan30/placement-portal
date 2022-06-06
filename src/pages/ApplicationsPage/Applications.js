@@ -1,10 +1,10 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./Applications.module.css";
 import Wrapper from "../../components/UI/Wrapper";
 import ApplicationsCard from "../../components/ApplicationsCard/ApplicationsCard";
-import {getSubmittedApplications} from "../apihandler";
-import LoadingScreen from "../../components/LoadingPage/LoadingPage";
-import CardLayout from "../../components/CardLayout/CardLayout";
+import { getSubmittedApplications } from "../apihandler";
+// import LoadingScreen from "../../components/LoadingPage/LoadingPage";
+// import CardLayout from "../../components/CardLayout/CardLayout";
 
 function Applications() {
   //Get the Data here.
@@ -32,16 +32,18 @@ function Applications() {
   return (
     <Wrapper style={styles.bg}>
       <div className={styles.heading}>Applications</div>
-        {JobList.map(job=>{
-          return(<ApplicationsCard
-              jobRole={job.job_role}
-              jobType={job.job_type}
-              companyName={job.company_name}
-              status={job.status}
-              ctc={job.ctc}
-              date={job.date}
-          />)
-        })}
+      {JobList.map((job) => {
+        return (
+          <ApplicationsCard
+            jobRole={job.job_role}
+            jobType={job.job_type}
+            companyName={job.company_name}
+            status={job.status}
+            ctc={job.ctc}
+            date={job.date}
+          />
+        );
+      })}
     </Wrapper>
   );
 }

@@ -10,6 +10,7 @@ function JobDescription(props) {
   let navigate = useNavigate();
   const [jobDescLoading, setJobDescLoading] = useState(false);
   const [JobDesc, setJobDesc] = useState([]);
+
   const getJobDescription = async () => {
     try {
       const jobID = sessionStorage.getItem("current_jobID");
@@ -28,21 +29,21 @@ function JobDescription(props) {
   useEffect(() => {
     setJobDescLoading(true);
     getJobDescription();
-    // setJobListArray(JobList.active_jobs);
   }, []);
 
-  console.log(JobDesc);
+  // console.log(JobDesc);
   const companyName = JobDesc.company_name;
   const companyDescription = JobDesc.job_desc;
-  const jobRole = "Job Role";
+  const jobRole = JobDesc.job_role;
   const jobType = JobDesc.job_type;
   const jd = JobDesc.jd_link;
-  const ctc = props.ctc ? props.ctc : ` ₹ ${JobDesc.ctc}`;
+  const ctc = JobDesc.ctc ? ` ₹ ${JobDesc.ctc}` : "";
   const location = JobDesc.location;
   const startDate = JobDesc.start_date;
   const lastDaytoApply = JobDesc.end_date;
-  const miscAttachemnts = JobDesc.extras;
+  // const miscAttachemnts = JobDesc.extras;
   const deptsAllowed = JobDesc.dept_allowed;
+  // const canApply = JobDesc.can_apply;
 
   const onApplyHandler = () => {
     navigate("/apply");
@@ -65,6 +66,9 @@ function JobDescription(props) {
             ""
           )}
           <div className={styles.subheading}>
+            <span> Job Role: </span> {jobRole}
+          </div>
+          <div className={styles.subheading}>
             <span> Job Type: </span> {jobType}
           </div>
           <div className={styles.subheading}>
@@ -82,10 +86,18 @@ function JobDescription(props) {
 
           <hr className={styles["separator-bottom"]} />
           <FileHolder fileName={jd} />
-          <FileHolder fileName={miscAttachemnts} />
-          <div> {lastDaytoApply} </div>
+          <div className={styles.lastHeading}>
+            <span className={styles.lastDay}> Apply By: </span> {lastDaytoApply}
+          </div>
+
           <div className={styles["container-center"]}>
-            {" "}
+            {/* {canApply ? (
+              <button className={styles.apply} onClick={onApplyHandler}>
+                Apply
+              </button>
+            ) : (
+              <button className={styles.cantapply}>Already Applied!</button>
+            )} */}
             <button className={styles.apply} onClick={onApplyHandler}>
               Apply
             </button>

@@ -8,7 +8,8 @@ import Wrapper from "../../../components/UI/Wrapper";
 function AdminLoginForm(props) {
   let navigate = useNavigate();
 
-  const { username, setUsername, setSuccess } = useContext(AuthContext);
+  const { username, setUsername, setSuccess, setRole } =
+    useContext(AuthContext);
   const [password, setPassword] = useState("");
 
   const UsernameHandler = (event) => {
@@ -39,6 +40,9 @@ function AdminLoginForm(props) {
           console.log(response.data);
           console.log(response.data.access_token);
           sessionStorage.setItem("token", response.data.access_token);
+
+          setRole(response.data.role);
+          sessionStorage.setItem("role", response.data.role);
           setSuccess(true);
 
           navigate("/adminhome");
@@ -48,7 +52,7 @@ function AdminLoginForm(props) {
         console.log("", error);
       }
     },
-    [setSuccess, navigate, props]
+    [setSuccess, navigate, props, setRole]
   );
 
   const changeUserHandler = () => {

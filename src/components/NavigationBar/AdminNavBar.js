@@ -11,6 +11,9 @@ function AdminNavBar() {
         <li className={styles["logo-nav"]}>Placement Portal</li>
       </Link>
       <ul className={styles.menu}>
+        <Link to="addjob" className={styles.applications}>
+          <li>Add Job</li>
+        </Link>
         <Link to="profile" className={styles.profile}>
           <li>{username ? username[0].toUpperCase() : null}</li>
         </Link>
