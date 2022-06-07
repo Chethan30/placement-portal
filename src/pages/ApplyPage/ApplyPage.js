@@ -1,11 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import Wrapper from "../../components/UI/Wrapper";
 import styles from "./ApplyPage.module.css";
+import LoadingPage from "../../components/LoadingPage/LoadingPage";
 import { storage } from "../../firebase.js";
 import { applyForJob } from "../apihandler.js";
 import { ref, getDownloadURL, uploadBytesResumable } from "firebase/storage";
 
 function ApplyPage() {
+  const [isLoading, setIsLoading] = useState(false);
+
   const onFileUploadHandler = (event) => {
     event.preventDefault();
     const file = event.target[0].files[0];
@@ -16,6 +19,7 @@ function ApplyPage() {
     if (!file) return "";
     const sotrageRef = ref(storage, `files/${file.name}`);
     const uploadTask = uploadBytesResumable(sotrageRef, file);
+    setIsLoading(true);
     uploadTask.on(
       "state_changed",
       (snapshot) => {
@@ -28,14 +32,15 @@ function ApplyPage() {
       () => {
         getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
           console.log("File available at", downloadURL);
+          setIsLoading(false);
           applyForJob(downloadURL, sessionStorage.getItem("current_jobID"));
         });
       }
     );
   };
 
-  return (
-    <Wrapper style={styles.box}>
+  const uploadContent = (
+    <div>
       <div>Please Attach your Resume *</div>
       <br></br>
       <form className={styles.form} onSubmit={onFileUploadHandler}>
@@ -43,6 +48,12 @@ function ApplyPage() {
         <br />
         <button className={styles.apply}>Submit Application</button>
       </form>
+    </div>
+  );
+
+  return (
+    <Wrapper style={styles.box}>
+      {isLoading ? <LoadingPage message="Uploading Resume.." /> : uploadContent}
     </Wrapper>
   );
 }
