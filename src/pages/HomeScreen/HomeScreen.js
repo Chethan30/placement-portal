@@ -19,6 +19,7 @@ function HomeScreen(props) {
       ) : (
         <AdminNavBar />
       )}
+      {console.log(md5("student"))}
       {/* <NavBar /> */}
       <Routes>
         <Route path="home" element={<HomePage onLogout={props.onLogout} />} />
