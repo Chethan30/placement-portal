@@ -1,6 +1,8 @@
 import React, { useRef } from "react";
 import styles from "./AddJob.module.css";
 import Wrapper from "../../../components/UI/Wrapper";
+import AutoComplete from "@mui/lab/Autocomplete";
+import TextField from "@mui/material/TextField";
 
 function AddJob() {
   const companyNameRef = useRef();
@@ -12,6 +14,36 @@ function AddJob() {
   const timeRef = useRef();
   const deptRef = useRef();
   const jdRef = useRef();
+
+  const top100Films = [
+    { title: "The Shawshank Redemption", year: 1994 },
+    { title: "The Godfather", year: 1972 },
+    { title: "The Godfather: Part II", year: 1974 },
+    { title: "The Dark Knight", year: 2008 },
+    { title: "12 Angry Men", year: 1957 },
+    { title: "Schindler's List", year: 1993 },
+    { title: "Pulp Fiction", year: 1994 },
+    {
+      title: "The Lord of the Rings: The Return of the King",
+      year: 2003,
+    },
+    { title: "The Good, the Bad and the Ugly", year: 1966 },
+    { title: "Fight Club", year: 1999 },
+    {
+      title: "The Lord of the Rings: The Fellowship of the Ring",
+      year: 2001,
+    },
+    {
+      title: "Star Wars: Episode V - The Empire Strikes Back",
+      year: 1980,
+    },
+    { title: "Forrest Gump", year: 1994 },
+    { title: "Inception", year: 2010 },
+    {
+      title: "The Lord of the Rings: The Two Towers",
+      year: 2002,
+    },
+  ];
 
   const addJobHandler = (event) => {
     event.preventDefault();
@@ -126,17 +158,23 @@ function AddJob() {
           Departments Allowed <span>*</span>
         </label>
         <br />
-        <select
-          ref={deptRef}
-          name=""
-          id=""
-          className={styles.inputfield}
-          required
-        >
-          <option value=" ">Select</option>
-          <option value="Innternship">Internship</option>
-          <option value="Full Time">Full Time</option>
-        </select>
+        {/* <Chip
+        label="CSE"
+        clickable /> */}
+        <AutoComplete
+          multiple
+          id="tags-standard"
+          options={top100Films}
+          getOptionLabel={(option) => option.title}
+          renderInput={(params) => (
+            <TextField
+              {...params}
+              variant="standard"
+              label="Multiple values"
+              placeholder="Favorites"
+            />
+          )}
+        />
         <br />
 
         <label className={styles.inputlabel}>

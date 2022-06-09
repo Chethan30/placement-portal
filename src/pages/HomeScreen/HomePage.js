@@ -36,10 +36,9 @@ function HomePage(props) {
     // setJobListArray(JobList.active_jobs);
   }, []);
 
-
-	if(!window.location.hash) {
-		window.location = window.location + '#loaded';
-		window.location.reload();
+  if (!window.location.hash) {
+    window.location = window.location + "#loaded";
+    window.location.reload();
   }
 
   return (
@@ -57,6 +56,6 @@ function HomePage(props) {
       </div>
     </Wrapper>
   );
-    }
+}
 
 export default HomePage;
