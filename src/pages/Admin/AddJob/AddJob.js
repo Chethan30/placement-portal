@@ -15,7 +15,7 @@ function AddJob() {
   const locationRef = useRef();
   const ctcRef = useRef();
   const dateRef = useRef();
-  const timeRef = useRef();
+  // const timeRef = useRef();
   const deptRef = useRef();
   const jdRef = useRef();
 
@@ -46,7 +46,7 @@ function AddJob() {
     console.log(locationRef.current.value);
     console.log(ctcRef.current.value);
     console.log(dateRef.current.value);
-    console.log(timeRef.current.value);
+    // console.log(timeRef.current.value);
     console.log(deptRef.current.value);
     console.log(jdRef.current.value);
 
@@ -56,7 +56,7 @@ function AddJob() {
     locationRef.current.value = "";
     ctcRef.current.value = "";
     dateRef.current.value = "";
-    timeRef.current.value = "";
+    // timeRef.current.value = "";
     deptRef.current.value = "";
     jdRef.current.value = "";
   };
@@ -139,12 +139,12 @@ function AddJob() {
         </label>
         <br />
         <input ref={dateRef} className={styles.datetime} type="date" required />
-        <input
+        {/* <input
           ref={timeRef}
           className={` ${styles.datetime} ${styles.time}`}
           type="time"
           required
-        />
+        /> */}
         <br />
 
         <label className={styles.inputlabel}>
