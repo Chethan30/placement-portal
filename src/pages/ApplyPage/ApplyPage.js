@@ -53,7 +53,11 @@ function ApplyPage() {
 
   return (
     <Wrapper style={styles.box}>
-      {isLoading ? <LoadingPage message="Uploading Resume.." /> : uploadContent}
+      {isLoading ? (
+        <LoadingPage loadMessage="Uploading Resume.." />
+      ) : (
+        uploadContent
+      )}
     </Wrapper>
   );
 }

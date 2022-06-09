@@ -74,3 +74,24 @@
 .submitbutton:hover {
   background-color: #005ad1;
 }
+
+.multiSelector {
+  margin-top: 0.2rem;
+  margin-bottom: 1.3rem;
+  padding: 0.4rem;
+  border-radius: 8px;
+  border: 1.5px solid rgb(180, 180, 180);
+  background-color: none;
+
+  min-width: 220px;
+  max-width: 440px;
+  width: 300px;
+}
+
+.chips {
+  display: "flex";
+  flex-wrap: wrap;
+}
+.chip {
+  margin: 2px;
+}

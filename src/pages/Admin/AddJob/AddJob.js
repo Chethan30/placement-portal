@@ -1,8 +1,12 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import styles from "./AddJob.module.css";
 import Wrapper from "../../../components/UI/Wrapper";
-import AutoComplete from "@mui/lab/Autocomplete";
-import TextField from "@mui/material/TextField";
+import Select from "@material-ui/core/Select";
+import Chip from "@material-ui/core/Chip";
+import Input from "@material-ui/core/Input";
+import MenuItem from "@material-ui/core/MenuItem";
+// import AutoComplete from "@mui/lab/Autocomplete";
+// import TextField from "@mui/material/TextField";
 
 function AddJob() {
   const companyNameRef = useRef();
@@ -15,35 +19,24 @@ function AddJob() {
   const deptRef = useRef();
   const jdRef = useRef();
 
-  const top100Films = [
-    { title: "The Shawshank Redemption", year: 1994 },
-    { title: "The Godfather", year: 1972 },
-    { title: "The Godfather: Part II", year: 1974 },
-    { title: "The Dark Knight", year: 2008 },
-    { title: "12 Angry Men", year: 1957 },
-    { title: "Schindler's List", year: 1993 },
-    { title: "Pulp Fiction", year: 1994 },
-    {
-      title: "The Lord of the Rings: The Return of the King",
-      year: 2003,
-    },
-    { title: "The Good, the Bad and the Ugly", year: 1966 },
-    { title: "Fight Club", year: 1999 },
-    {
-      title: "The Lord of the Rings: The Fellowship of the Ring",
-      year: 2001,
-    },
-    {
-      title: "Star Wars: Episode V - The Empire Strikes Back",
-      year: 1980,
-    },
-    { title: "Forrest Gump", year: 1994 },
-    { title: "Inception", year: 2010 },
-    {
-      title: "The Lord of the Rings: The Two Towers",
-      year: 2002,
-    },
+  const [personName, setPersonName] = useState([]);
+
+  const deptNames = [
+    "CSE",
+    "ISE",
+    "ECE",
+    "EEE",
+    "IEM",
+    "ME",
+    "AE",
+    "CV",
+    "CSD",
+    "AI",
   ];
+
+  const handleChange = (event) => {
+    setPersonName(event.target.value);
+  };
 
   const addJobHandler = (event) => {
     event.preventDefault();
@@ -158,23 +151,28 @@ function AddJob() {
           Departments Allowed <span>*</span>
         </label>
         <br />
-        {/* <Chip
-        label="CSE"
-        clickable /> */}
-        <AutoComplete
+        <Select
+          className={styles.inputfield}
+          ref={deptRef}
           multiple
-          id="tags-standard"
-          options={top100Films}
-          getOptionLabel={(option) => option.title}
-          renderInput={(params) => (
-            <TextField
-              {...params}
-              variant="standard"
-              label="Multiple values"
-              placeholder="Favorites"
-            />
+          value={personName}
+          variant="outlined"
+          onChange={handleChange}
+          input={<Input id="" />}
+          renderValue={(selected) => (
+            <div className={styles.chips}>
+              {selected.map((value) => (
+                <Chip key={value} label={value} className={styles.chip} />
+              ))}
+            </div>
           )}
-        />
+        >
+          {deptNames.map((deptName) => (
+            <MenuItem key={deptName} value={deptName}>
+              {deptName}
+            </MenuItem>
+          ))}
+        </Select>
         <br />
 
         <label className={styles.inputlabel}>
