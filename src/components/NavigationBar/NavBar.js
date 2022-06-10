@@ -23,7 +23,7 @@ function NavBar() {
         <Link to="profile" className={styles.profile}>
           <li>
             <div className={styles.profileIcon}>
-              {username ? username[0].toUpperCase() : null}
+              {/* {username ? username[0].toUpperCase() : null} */}1
             </div>
           </li>
         </Link>

@@ -6,6 +6,7 @@ import GeneralDetails from "./Details/GeneralDetails";
 import EducationDetails from "./Details/EducationDetails";
 import LoadingPage from "../../components/LoadingPage/LoadingPage";
 import classes from "./Profile.module.css";
+import PlacementDetials from "./Details/PlacementDetials";
 
 function Profile() {
   const [details, setDetails] = useState([]);
@@ -23,6 +24,12 @@ function Profile() {
   let profileContent2 = (
     <div className={classes.educational}>
       <EducationDetails EduDets={details} />
+    </div>
+  );
+
+  let profileContent3 = (
+    <div className={classes.educational}>
+      <PlacementDetials PlacedDets={details} />
     </div>
   );
 
@@ -49,6 +56,7 @@ function Profile() {
       {isProfileLoading && <LoadingPage loadMessage="Getting Profile..." />}
       {!isProfileLoading && profileContent}
       {!isProfileLoading && profileContent2}
+      {!isProfileLoading && profileContent3}
     </Wrapper>
   );
 }

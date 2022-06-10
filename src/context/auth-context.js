@@ -5,6 +5,7 @@ const AuthContext = createContext({});
 export const AuthProvider = (props) => {
   const [username, setUsername] = useState("");
   const [success, setSuccess] = useState(false);
+  const [role, setRole] = useState("");
 
   useEffect(() => {
     let alreadyLoggedIn = sessionStorage.getItem("token");
@@ -15,13 +16,21 @@ export const AuthProvider = (props) => {
 
   const logoutHandler = () => {
     console.log("Button clicked so logging out");
-    sessionStorage.removeItem("token");
+    sessionStorage.clear();
     setSuccess(false);
   };
 
   return (
     <AuthContext.Provider
-      value={{ username, success, setUsername, setSuccess, logoutHandler }}
+      value={{
+        username,
+        role,
+        success,
+        setUsername,
+        setSuccess,
+        logoutHandler,
+        setRole,
+      }}
     >
       {props.children}
     </AuthContext.Provider>

@@ -1,0 +1,97 @@
+.bg {
+  margin-top: 10rem;
+}
+
+.heading {
+  font-weight: 700;
+  font-size: 1.8rem;
+
+  margin-bottom: 1rem;
+}
+
+.inputlabel {
+  font-weight: 500;
+  font-size: 1.2rem;
+
+  color: #1078ff;
+}
+
+.inputlabel span {
+  color: red;
+  font-weight: 100;
+}
+
+.inputfield {
+  margin-top: 0.2rem;
+  margin-bottom: 1.3rem;
+  padding: 0.4rem;
+  border-radius: 8px;
+  border: 1.5px solid rgb(180, 180, 180);
+
+  min-width: 220px;
+  max-width: 440px;
+  width: 300px;
+
+  font-size: 1rem;
+}
+
+::placeholder {
+  color: grey;
+}
+
+.datetime {
+  margin-top: 0.2rem;
+  margin-bottom: 1.3rem;
+  padding: 0.4rem;
+  border-radius: 8px;
+  border: 1.5px solid rgb(180, 180, 180);
+
+  min-width: 100px;
+  max-width: 200px;
+  width: 170px;
+
+  font-size: 1rem;
+}
+
+.time {
+  margin-left: 1rem;
+}
+
+.submitbutton {
+  padding: 0.8rem;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+
+  font-size: 1rem;
+  font-weight: 600;
+  color: white;
+  background-color: #1078ff;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+}
+
+.submitbutton:hover {
+  background-color: #005ad1;
+}
+
+.multiSelector {
+  margin-top: 0.2rem;
+  margin-bottom: 1.3rem;
+  padding: 0.4rem;
+  border-radius: 8px;
+  border: 1.5px solid rgb(180, 180, 180);
+  background-color: none;
+
+  min-width: 220px;
+  max-width: 440px;
+  width: 300px;
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+}
+.chip {
+  margin: 2px;
+}

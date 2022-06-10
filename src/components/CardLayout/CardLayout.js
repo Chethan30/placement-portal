@@ -1,15 +1,20 @@
 import React from "react";
+import Wrapper from "../UI/Wrapper";
 import styles from "./CardLayout.module.css";
 import JobCard from "./JobCard";
 
 function CardLayout(props) {
-  console.log("props here", props.JobList.active_jobs);
+  console.log("props here", props);
+
+  const controlClasses =
+    props.JobList.length > 0 ? styles["outer-layout"] : styles["outer-layout2"];
 
   return (
-    <div className={styles["outer-layout"]}>
-      <div className={styles.layout}>
-        {props.JobList.active_jobs
-          ? props.JobList.active_jobs.map((jobID) => {
+    <Wrapper>
+      <div className={controlClasses}>
+        <div className={styles.layout}>
+          {props.JobList.length > 0 ? (
+            props.JobList.map((jobID) => {
               return (
                 <JobCard
                   key={jobID.job_id}
@@ -21,9 +26,12 @@ function CardLayout(props) {
                 />
               );
             })
-          : ""}
+          ) : (
+            <h2 className={styles.error}>Sorry 🫤</h2>
+          )}
+        </div>
       </div>
-    </div>
+    </Wrapper>
   );
 }
 
