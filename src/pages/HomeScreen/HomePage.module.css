@@ -17,3 +17,25 @@
 .logout:hover {
   background-color: red;
 }
+
+.search {
+  background-color: rgb(240, 240, 240);
+  margin: 0 auto;
+  width: 50%;
+  padding: 0.5em;
+  border: none;
+  border-radius: 0.5rem;
+  font-family: "Poppins";
+  font-weight: 400;
+  font-size: 1rem;
+
+  margin-bottom: 2rem;
+}
+
+::placeholder {
+  font-family: "Poppins";
+  font-weight: 400;
+  font-size: 1rem;
+  color: rgb(103, 103, 103);
+  opacity: 1;
+}

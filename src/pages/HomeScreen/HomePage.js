@@ -4,10 +4,13 @@ import Wrapper from "../../components/UI/Wrapper";
 import LoadingScreen from "../../components/LoadingPage/LoadingPage";
 import CardLayout from "../../components/CardLayout/CardLayout";
 import { getJobList } from "../../pages/apihandler";
+import SearchBar from "../../components/SearchBar/SearchBar";
 
 function HomePage(props) {
   const [jobCardLoading, setJobCardLoading] = useState(false);
   const [JobList, setJobList] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [searchResults, setSearchResults] = useState([]);
   // const [JobListArray, setJobListArray] = useState([]);
 
   const getJobHandler = async () => {
@@ -15,8 +18,8 @@ function HomePage(props) {
       const response = await getJobList();
       if (response.status === 200) {
         setJobCardLoading(false);
-        setJobList(response.data);
-
+        setJobList(response.data.active_jobs);
+        console.log(response.data.active_jobs);
         return response;
       } else throw new Error("Error in loading Jobs!");
     } catch (error) {
@@ -24,10 +27,26 @@ function HomePage(props) {
     }
   };
 
+  const updateSearchHandler = (searchKeyword) => {
+    setSearchTerm(searchKeyword);
+
+    if (searchTerm !== "") {
+      const newJobList = JobList.filter((job) => {
+        return Object.values(job)
+          .join(" ")
+          .toLowerCase()
+          .includes(searchKeyword.toLowerCase());
+      });
+      setSearchResults(newJobList);
+    } else {
+      setSearchResults(JobList);
+    }
+  };
+
   const jobCardLayout = jobCardLoading ? (
     <LoadingScreen loadMessage="Fetching Jobs..." />
   ) : (
-    <CardLayout JobList={JobList} />
+    <CardLayout JobList={searchTerm.length < 1 ? JobList : searchResults} />
   );
 
   useEffect(() => {
@@ -51,7 +70,10 @@ function HomePage(props) {
           </button>
         </div>
         {/* <div> Search Bar Component Here</div> */}
-        {/* <SearchBar updateSearchTerm={setJobListArray} /> */}
+        <SearchBar
+          updateSearchTerm={updateSearchHandler}
+          serachTerm={searchTerm}
+        />
         {jobCardLayout}
       </div>
     </Wrapper>
