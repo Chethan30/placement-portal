@@ -15,11 +15,9 @@ function AddJob() {
   const locationRef = useRef();
   const ctcRef = useRef();
   const dateRef = useRef();
-  // const timeRef = useRef();
-  const deptRef = useRef();
   const jdRef = useRef();
 
-  const [personName, setPersonName] = useState([]);
+  const [deptName, setDeptName] = useState([]);
 
   const deptNames = [
     "CSE",
@@ -35,7 +33,7 @@ function AddJob() {
   ];
 
   const handleChange = (event) => {
-    setPersonName(event.target.value);
+    setDeptName(event.target.value);
   };
 
   const addJobHandler = (event) => {
@@ -46,8 +44,8 @@ function AddJob() {
     console.log(locationRef.current.value);
     console.log(ctcRef.current.value);
     console.log(dateRef.current.value);
+    console.log(deptName);
     // console.log(timeRef.current.value);
-    console.log(deptRef.current.value);
     console.log(jdRef.current.value);
 
     companyNameRef.current.value = "";
@@ -57,7 +55,8 @@ function AddJob() {
     ctcRef.current.value = "";
     dateRef.current.value = "";
     // timeRef.current.value = "";
-    deptRef.current.value = "";
+    // deptRef.current.value = "";
+    setDeptName([]);
     jdRef.current.value = "";
   };
 
@@ -153,9 +152,8 @@ function AddJob() {
         <br />
         <Select
           className={styles.inputfield}
-          ref={deptRef}
           multiple
-          value={personName}
+          value={deptName}
           variant="outlined"
           onChange={handleChange}
           input={<Input id="" />}
