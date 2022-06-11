@@ -38,6 +38,7 @@
 
 .container-center {
   display: flex;
+  flex-direction: column;
   justify-items: center;
 }
 
@@ -85,4 +86,30 @@
 .lastDay {
   color: red;
   font-weight: 600;
+}
+
+.shortUpload {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.inputfield {
+  margin-top: 0.2rem;
+  margin-bottom: 1.3rem;
+  padding: 0.4rem;
+  border-radius: 8px;
+  border: 1.5px solid rgb(180, 180, 180);
+
+  min-width: 220px;
+  max-width: 440px;
+  width: 300px;
+
+  font-size: 1rem;
+}
+
+.delete {
+  background-color: rgb(212, 0, 25);
 }

@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
+import AuthContext from "../../context/auth-context";
 import { useNavigate } from "react-router-dom";
 import styles from "./JobDescription.module.css";
 import Wrapper from "../../components/UI/Wrapper";
@@ -7,9 +8,11 @@ import { getJobDesc } from "../apihandler";
 import LoadingScreen from "../../components/LoadingPage/LoadingPage";
 
 function JobDescription(props) {
+  const { role } = useContext(AuthContext);
   let navigate = useNavigate();
   const [jobDescLoading, setJobDescLoading] = useState(false);
   const [JobDesc, setJobDesc] = useState([]);
+  const [adminPrivilage, setAdminPrivilage] = useState(false);
 
   const getJobDescription = async () => {
     try {
@@ -27,9 +30,16 @@ function JobDescription(props) {
     }
   };
 
+  const shortlistUploadHandler = (event) => {
+    event.preventDefault();
+  };
+
   useEffect(() => {
     setJobDescLoading(true);
     getJobDescription();
+    if (role === "admin") {
+      setAdminPrivilage(true);
+    }
   }, []);
 
   // console.log(JobDesc);
@@ -59,13 +69,6 @@ function JobDescription(props) {
           <div className={styles.companyname}> {companyName} </div>
           <hr className={styles["separator-top"]} />
           <div className={styles.companydesc}> {companyDescription} </div>
-          {props.jobRole ? (
-            <div className={styles.jobrole}>
-              <span> Job Role :</span> {jobRole}
-            </div>
-          ) : (
-            ""
-          )}
           <div className={styles.subheading}>
             <span> Job Role: </span> {jobRole}
           </div>
@@ -102,6 +105,27 @@ function JobDescription(props) {
             {/* <button className={styles.apply} onClick={onApplyHandler}>
               Apply
             </button> */}
+            {adminPrivilage && (
+              <button
+                type="button"
+                className={`${styles.delete} ${styles.apply} `}
+              >
+                Delete
+              </button>
+            )}
+            {adminPrivilage && (
+              <div>
+                <form
+                  onSubmit={shortlistUploadHandler}
+                  className={styles.shortUpload}
+                >
+                  <input className={styles.inputfield} type="file" required />
+                  <button type="submit" className={styles.apply}>
+                    Upload Shortlist
+                  </button>
+                </form>
+              </div>
+            )}
           </div>
         </div>
       )}

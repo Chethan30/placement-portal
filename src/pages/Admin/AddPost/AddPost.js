@@ -9,6 +9,7 @@ function AddPost() {
   const postTitle = useRef();
   const postContent = useRef();
 
+
   const addPostHandler = (event) => {
     event.preventDefault();
     setShowAddPost(false);
