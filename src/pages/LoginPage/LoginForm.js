@@ -43,7 +43,10 @@ function LoginForm(props) {
           sessionStorage.setItem("token", response.data.access_token);
 
           setRole(response.data.role);
+          setUsername(response.data.username);
+          sessionStorage.setItem("username", response.data.username);
           sessionStorage.setItem("role", response.data.role);
+          sessionStorage.setItem("department", response.data.dept);
           setSuccess(true);
 
           navigate("/home");
@@ -53,7 +56,7 @@ function LoginForm(props) {
         console.log("", error);
       }
     },
-    [setSuccess, navigate, props, setRole]
+    [setSuccess, navigate, props, setRole, setUsername]
   );
 
   const changeUserHandler = (event) => {
@@ -86,6 +89,7 @@ function LoginForm(props) {
           value={password}
           onChange={PasswordHandler}
           placeholder="Password"
+          autoComplete="on"
           required
         />
         <br />

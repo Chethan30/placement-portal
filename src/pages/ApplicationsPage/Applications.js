@@ -1,11 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import styles from "./Applications.module.css";
 import Wrapper from "../../components/UI/Wrapper";
 import ApplicationsCard from "../../components/ApplicationsCard/ApplicationsCard";
 import LoadingScreen from "../../components/LoadingPage/LoadingPage";
 import { getSubmittedApplications } from "../apihandler";
+import AuthContext from "../../context/auth-context";
 
 function Applications() {
+  const { username, success } = useContext(AuthContext);
+  console.log(username, "HEREEEE");
+  console.log(success, "HEREEEE");
   //Get the Data here.
   // If you can do rest, else :) GG
   const [JobList, setJobList] = useState([]);

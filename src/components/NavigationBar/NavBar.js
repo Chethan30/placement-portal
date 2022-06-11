@@ -17,9 +17,9 @@ function NavBar(props) {
         <Link to="applications" className={styles.applications}>
           <li>Applications</li>
         </Link>
-        {/* <Link to="notifications" className={styles.notifications}>
-          <li>Notifications</li>
-        </Link> */}
+        <Link to="forum" className={styles.notifications}>
+          <li>Forum</li>
+        </Link>
         <Link to="profile" className={styles.profile}>
           <li>
             <div className={styles.profileIcon}>

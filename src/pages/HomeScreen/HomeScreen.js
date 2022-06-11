@@ -10,6 +10,7 @@ import AdminHome from "../Admin/AdminHome/AdminHome";
 import JobDescription from "../JobDescription/JobDescription";
 import ApplyPage from "../ApplyPage/ApplyPage";
 import AddJob from "../Admin/AddJob/AddJob";
+import Forum from "../Forum/Forum";
 // import AppliedModal from "../ApplyPage/AppliedModal";
 // import styles from "./HomeScreen.module.css";
 function HomeScreen(props) {
@@ -32,7 +33,7 @@ function HomeScreen(props) {
         <Route path="apply" element={<ApplyPage />} />
         <Route path="applications" element={<Applications />} />
         <Route path="jobdescrption" element={<JobDescription />} />
-        {/* <Route path="notifications" element={<AppliedModal />} /> */}
+        <Route path="forum" element={<Forum />} />
         <Route path="profile" element={<Profile />} />
         <Route path="*" element={<h1>Error 404</h1>} />
       </Routes>

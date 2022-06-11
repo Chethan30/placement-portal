@@ -9,8 +9,12 @@ export const AuthProvider = (props) => {
 
   useEffect(() => {
     let alreadyLoggedIn = sessionStorage.getItem("token");
+    let usernameRecvd = sessionStorage.getItem("username");
+    let roleRecvd = sessionStorage.getItem("role");
     if (alreadyLoggedIn) {
       setSuccess(true);
+      setUsername(usernameRecvd);
+      setRole(roleRecvd);
     }
   }, [setSuccess]);
 
