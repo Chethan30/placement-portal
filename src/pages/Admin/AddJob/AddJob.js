@@ -19,6 +19,7 @@ function AddJob() {
   const ctcRef = useRef();
   const dateRef = useRef();
   const jdRef = useRef();
+  const jobDescRef = useRef();
 
   const [deptName, setDeptName] = useState([]);
 
@@ -40,12 +41,13 @@ function AddJob() {
   };
 
   const onFileUploadHandler = (event) => {
+    console.log(event);
     event.preventDefault();
-    const file = event.target[0].files[0];
+    const file = event.target[8].files[0];
     uploadFile(file, "jobDesc/jobid/${file.name}");
   };
 
-  const [jdUrl, setJDUrl] = useState("");
+  //const [jdUrl, setJDUrl] = useState("");
 
   const uploadFile = (file) => {
     if (!file) return "";
@@ -62,19 +64,22 @@ function AddJob() {
       },
       (error) => console.log(error),
       () => {
-        setJDUrl(getDownloadURL(uploadTask.snapshot.ref));
+        getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+          console.log("File available at", downloadURL);
+          addJobHandler(downloadURL);
+        });
       }
     );
   };
 
-  const addJobHandler = (event) => {
-    event.preventDefault();
+  const addJobHandler = (jdUrl) => {
     console.log(companyNameRef.current.value);
     console.log(jobRoleRef.current.value);
     console.log(jobTypeRef.current.value);
     console.log(locationRef.current.value);
     console.log(ctcRef.current.value);
     console.log(dateRef.current.value);
+    console.log(jobDescRef.current.value);
     console.log(deptName);
     // console.log(timeRef.current.value);
     console.log(jdRef.current.value);
@@ -96,7 +101,7 @@ function AddJob() {
       "dept_allowed":deptName.toString(),
       "ctc":ctcRef.current.value,
       "comp_address": locationRef.current.value,
-      "job_desc":"",
+      "job_desc":jobDescRef.current.value,
       "placed_slab": slab,
       "start_date":"2022-12-01",
       "end_date":dateRef.current.value,
@@ -112,6 +117,7 @@ function AddJob() {
     locationRef.current.value = "";
     ctcRef.current.value = "";
     dateRef.current.value = "";
+    jobDescRef.current.value = "";
     // timeRef.current.value = "";
     // deptRef.current.value = "";
     setDeptName([]);
@@ -122,7 +128,7 @@ function AddJob() {
   return (
     <Wrapper style={styles.bg}>
       <div className={styles.heading}>Add Job Form</div>
-      <form onSubmit={addJobHandler}>
+      <form onSubmit={onFileUploadHandler}>
         <label className={styles.inputlabel}>
           Company Name <span>*</span>
         </label>
@@ -164,6 +170,18 @@ function AddJob() {
           <option value="Internship">Internship</option>
           <option value="Full Time">Full Time</option>
         </select>
+        <br />
+
+        <label className={styles.inputlabel}>
+          Job Description <span>*</span>
+        </label>
+        <br />
+        <textarea
+          ref={jobDescRef}
+          className={styles.inputfield}
+          placeholder="Job Desc"
+          required
+        />
         <br />
 
         <label className={styles.inputlabel}>
@@ -236,7 +254,10 @@ function AddJob() {
           JD <span>*</span>
         </label>
         <br />
+        {/*<form onSubmit={onFileUploadHandler}>*/}
         <input ref={jdRef} className={styles.inputfield} type="file" required />
+        {/*<button >UPLOAD</button>*/}
+        {/*</form>*/}
         <br />
 
         <button type="submit" className={styles.submitbutton}>

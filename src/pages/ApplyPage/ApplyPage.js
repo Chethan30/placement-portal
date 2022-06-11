@@ -11,6 +11,7 @@ function ApplyPage() {
 
   const onFileUploadHandler = (event) => {
     event.preventDefault();
+    //console.log(event)
     const file = event.target[0].files[0];
     uploadFile(file, "resume/usn/jobid/${file.name}");
   };
