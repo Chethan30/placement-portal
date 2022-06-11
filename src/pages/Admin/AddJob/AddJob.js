@@ -86,7 +86,6 @@ function AddJob() {
     // console.log(timeRef.current.value);
     console.log(jdRef.current.value);
 
-
     let slab = 1;
     if (ctcRef.current.value < 600000) {
       slab = 1;

@@ -8,18 +8,17 @@ function JobCard(props) {
   const companyName = props.companyName;
   const jobRole = props.jobRole;
   const jobType = props.jobType;
-  const remainingDays = props.remainingDays;
+  let remainingDays = props.remainingDays;
   let oldJob = false;
 
   if (remainingDays < 0) {
     oldJob = true;
+    remainingDays = "--";
   }
 
-  // let todayDate = new Date();
-  // let endDate = new Date(props.endDate);
-  // let difference = endDate.getTime() - todayDate.getTime();
-  // let days = difference / (1000 * 3600 * 24);
-  // const timeLeft = Math.round(days);
+  let controlClasses = oldJob
+    ? `${styles.timer} ${styles.oldJob}`
+    : `${styles.timer}`;
 
   let navigate = useNavigate();
 
@@ -33,7 +32,9 @@ function JobCard(props) {
     <div className={styles.card}>
       <div className={styles.uppercard}>
         <span className={styles.companyname}> {companyName} </span>
-        <div className={styles.timer}>{remainingDays} days left</div>
+        <div className={controlClasses}>
+          {remainingDays} {!oldJob && "days left"}
+        </div>
       </div>
       <div className={styles.lowercard}>
         <div>
@@ -48,11 +49,9 @@ function JobCard(props) {
             <span>{jobType}</span>
           </div>
         </div>
-        {!oldJob && (
-          <button className={styles["more-button"]} onClick={onMoreHandler}>
-            {"More >"}
-          </button>
-        )}
+        <button className={styles["more-button"]} onClick={onMoreHandler}>
+          {"More >"}
+        </button>
       </div>
     </div>
   );
