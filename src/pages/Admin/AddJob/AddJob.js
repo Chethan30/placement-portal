@@ -5,7 +5,7 @@ import Select from "@material-ui/core/Select";
 import Chip from "@material-ui/core/Chip";
 import Input from "@material-ui/core/Input";
 import MenuItem from "@material-ui/core/MenuItem";
-import {getJobList, createJob, applyForJob} from "../../apihandler";
+import {createJob} from "../../apihandler";
 import {getDownloadURL, ref, uploadBytesResumable} from "firebase/storage";
 import {storage} from "../../../firebase";
 // import AutoComplete from "@mui/lab/Autocomplete";
@@ -85,15 +85,15 @@ function AddJob() {
     console.log(jdRef.current.value);
 
 
-    const slab = 1;
+    let slab = 1;
     if (ctcRef.current.value < 600000){
-      const slab=1;
+      slab=1;
     }
     else if (ctcRef.current.value < 2000000){
-      const slab=2;
+      slab=2;
     }
     else{
-      const slab=3;
+      slab=3;
     }
     const data ={
       "job_type":jobTypeRef.current.value,
