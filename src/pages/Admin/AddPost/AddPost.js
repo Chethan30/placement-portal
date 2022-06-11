@@ -2,14 +2,23 @@ import React, { useRef, useState } from "react";
 import styles from "./AddPost.module.css";
 import Wrapper from "../../../components/UI/Wrapper";
 import Forum from "../../Forum/Forum";
+import {addPost} from "../../apihandler";
 
 function AddPost() {
   const [showAddPost, setShowAddPost] = useState(false);
   const postTitle = useRef();
   const postContent = useRef();
 
-  const addPostHandler = () => {
+
+  const addPostHandler = (event) => {
+    event.preventDefault();
     setShowAddPost(false);
+    const data={
+      "title":postTitle.current.value,
+      "content": postContent.current.value
+    }
+    console.log(data)
+    addPost(data);
   };
 
   const showAddPostHandler = () => {
