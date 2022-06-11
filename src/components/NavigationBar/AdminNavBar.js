@@ -14,6 +14,9 @@ function AdminNavBar(props) {
         <Link to="addjob" className={styles.applications}>
           <li>Add Job</li>
         </Link>
+        <Link to="addpost" className={styles.applications}>
+          <li>Add Post</li>
+        </Link>
         <Link to="profile" className={styles.profile}>
           <li>{username ? username[0].toUpperCase() : null}</li>
         </Link>

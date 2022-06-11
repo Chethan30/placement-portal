@@ -10,6 +10,7 @@ import AdminHome from "../Admin/AdminHome/AdminHome";
 import JobDescription from "../JobDescription/JobDescription";
 import ApplyPage from "../ApplyPage/ApplyPage";
 import AddJob from "../Admin/AddJob/AddJob";
+import AddPost from "../Admin/AddPost/AddPost";
 import Forum from "../Forum/Forum";
 // import AppliedModal from "../ApplyPage/AppliedModal";
 // import styles from "./HomeScreen.module.css";
@@ -29,6 +30,7 @@ function HomeScreen(props) {
           element={<AdminHome onLogout={props.onLogout} />}
         />
         <Route path="addjob" element={<AddJob />} />
+        <Route path="addpost" element={<AddPost />} />
         <Route path="cvscorer" element={<CVScorer />} />
         <Route path="apply" element={<ApplyPage />} />
         <Route path="applications" element={<Applications />} />
