@@ -16,9 +16,9 @@ function HomeScreen(props) {
   return (
     <div>
       {sessionStorage.getItem("role") === "student" ? (
-        <NavBar />
+        <NavBar onLogout={props.onLogout} />
       ) : (
-        <AdminNavBar />
+        <AdminNavBar onLogout={props.onLogout} />
       )}
       {/* <NavBar /> */}
       <Routes>
