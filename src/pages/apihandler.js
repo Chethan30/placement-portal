@@ -31,3 +31,7 @@ export function createJob(data){
 export function getBlogs(){
   return axiosClient.get("/blogs/getBlogs");
 }
+
+export function addPost(data){
+  return axiosClient.post("/blogs/createBlog", JSON.stringify(data));
+}
