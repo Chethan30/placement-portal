@@ -57,12 +57,6 @@ function AdminHome(props) {
   return (
     <Wrapper>
       <div className={styles.bg}>
-        <div>
-          {/* <div>HomePage</div> */}
-          <button onClick={props.onLogout} className={styles.logout}>
-            Logout
-          </button>
-        </div>
         {/* <div> Search Bar Component Here</div> */}
         <SearchBar
           updateSearchTerm={updateSearchHandler}

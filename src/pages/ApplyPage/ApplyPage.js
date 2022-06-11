@@ -2,12 +2,14 @@ import React, { useState } from "react";
 import Wrapper from "../../components/UI/Wrapper";
 import styles from "./ApplyPage.module.css";
 import LoadingPage from "../../components/LoadingPage/LoadingPage";
+import AppliedModal from "./AppliedModal";
 import { storage } from "../../firebase.js";
 import { applyForJob } from "../apihandler.js";
 import { ref, getDownloadURL, uploadBytesResumable } from "firebase/storage";
 
 function ApplyPage() {
   const [isLoading, setIsLoading] = useState(false);
+  const [success, setSuccess] = useState(false);
 
   const onFileUploadHandler = (event) => {
     event.preventDefault();
@@ -33,6 +35,7 @@ function ApplyPage() {
         getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
           console.log("File available at", downloadURL);
           setIsLoading(false);
+          setSuccess(true);
           applyForJob(downloadURL, sessionStorage.getItem("current_jobID"));
         });
       }
@@ -54,7 +57,9 @@ function ApplyPage() {
   return (
     <Wrapper style={styles.box}>
       {isLoading ? (
-        <LoadingPage loadMessage="Uploading Resume.." />
+        <LoadingPage loadMessage="Uploading..." />
+      ) : success ? (
+        <AppliedModal />
       ) : (
         uploadContent
       )}
