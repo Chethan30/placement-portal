@@ -3,11 +3,11 @@ import styles from "./AppliedModal.module.css";
 import JobApplied from "../../assets/JobAppliedSuccess.png";
 import { useNavigate } from "react-router-dom";
 
-function AppliedModal() {
+function AppliedModal(props) {
   let navigate = useNavigate();
 
   const goHomeHandler = () => {
-    navigate("/home");
+    navigate(props.destination);
   };
 
   return (
@@ -16,7 +16,7 @@ function AppliedModal() {
         <div className={styles.image}>
           <img src={JobApplied} alt="Success" />
         </div>
-        <p className={styles.message}>Jop Application Successful</p>
+        <p className={styles.message}>{props.message}</p>
         <button className={styles.home} onClick={goHomeHandler}>
           Home
         </button>

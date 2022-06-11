@@ -60,7 +60,10 @@ function ApplyPage() {
       {isLoading ? (
         <LoadingPage loadMessage="Uploading..." />
       ) : success ? (
-        <AppliedModal />
+        <AppliedModal
+          destination="/home"
+          message="Job Application Successful"
+        />
       ) : (
         uploadContent
       )}
