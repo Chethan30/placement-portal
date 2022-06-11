@@ -82,7 +82,7 @@ function JobDescription(props) {
             <span> Cost to Company: </span> {ctc}
           </div>
           <div className={styles.subheading}>
-            <span> Published Date: </span> {startDate}
+            <span> Starting Date: </span> {startDate}
           </div>
 
           <hr className={styles["separator-bottom"]} />

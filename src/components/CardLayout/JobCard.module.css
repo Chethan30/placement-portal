@@ -39,6 +39,11 @@
   padding: 0.1rem;
 }
 
+.oldJob {
+  background-color: #cfcfcf;
+  color: #8f8f8f;
+}
+
 .lowercard {
   display: flex;
   justify-content: space-between;

@@ -1,6 +1,7 @@
 import React, { useRef, useState } from "react";
 import styles from "./AddPost.module.css";
 import Wrapper from "../../../components/UI/Wrapper";
+import Forum from "../../Forum/Forum";
 
 function AddPost() {
   const [showAddPost, setShowAddPost] = useState(false);
@@ -78,6 +79,7 @@ function AddPost() {
         </div>
       )}
       {showAddPost && formContent}
+      <Forum style={styles.newBG} />
     </Wrapper>
   );
 }
