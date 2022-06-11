@@ -27,3 +27,24 @@ export function getSubmittedApplications() {
   // console.log(axiosClient.defaults.headers)
   return axiosClient.get("/jobs/getApplications");
 }
+
+export function createJob(data){
+//   data={
+//   "job_type":"Internship",
+//     "company_name":"Amazon",
+//     "dept_alowed":"CSE",
+//     "ctc":100000,
+//     "comp_address": "edlepk",
+//     "internship": true,
+//     "job_desc":"sjsn",
+//     "placed_slab":2,
+//     "start_date":"1272",
+//     "end_date":"234",
+//     "extras":"5678",
+//     "job_role":"sde",
+//     "jd_link":"qwertyui"
+// }
+  console.log(data)
+  return axiosClient.post("/jobs/createJob", JSON.stringify(data));
+}
+
