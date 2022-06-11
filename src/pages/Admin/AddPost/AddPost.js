@@ -9,7 +9,7 @@ function AddPost() {
   const postContent = useRef();
 
   const addPostHandler = () => {
-    showAddPost(false);
+    setShowAddPost(false);
   };
 
   const showAddPostHandler = () => {
