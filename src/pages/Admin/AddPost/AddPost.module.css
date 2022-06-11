@@ -39,24 +39,6 @@
   color: grey;
 }
 
-.datetime {
-  margin-top: 0.2rem;
-  margin-bottom: 1.3rem;
-  padding: 0.4rem;
-  border-radius: 8px;
-  border: 1.5px solid rgb(180, 180, 180);
-
-  min-width: 100px;
-  max-width: 200px;
-  width: 170px;
-
-  font-size: 1rem;
-}
-
-.time {
-  margin-left: 1rem;
-}
-
 .submitbutton {
   padding: 0.8rem;
   margin-top: 2rem;
@@ -75,27 +57,26 @@
   background-color: #005ad1;
 }
 
-.multiSelector {
-  margin-top: 0.2rem;
-  margin-bottom: 1.3rem;
-  padding: 0.4rem;
-  border-radius: 8px;
-  border: 1.5px solid rgb(180, 180, 180);
-  background-color: none;
-
-  min-width: 220px;
-  max-width: 440px;
-  width: 300px;
-}
-
-.jondescription {
-  resize: none;
-}
-
-.chips {
+.container {
   display: flex;
-  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
 }
-.chip {
-  margin: 2px;
+
+.addPost {
+  margin: 0;
+}
+
+.cancelButton {
+  margin-left: 1rem;
+  background-color: rgb(255, 31, 31);
+}
+
+.cancelButton:hover {
+  margin-left: 1rem;
+  background-color: rgb(236, 0, 0);
+}
+
+.newBG {
+  margin: 1rem;
 }

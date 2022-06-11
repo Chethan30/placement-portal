@@ -1,0 +1,16 @@
+.bg {
+  margin-top: 10rem;
+
+  display: block;
+
+  justify-content: center;
+  /* align-items: center; */
+}
+
+.heading {
+  font-family: "Poppins";
+  font-weight: bold;
+  font-size: 2rem;
+
+  margin-bottom: 1.5rem;
+}
