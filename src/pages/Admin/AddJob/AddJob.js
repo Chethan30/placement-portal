@@ -5,6 +5,9 @@ import Select from "@material-ui/core/Select";
 import Chip from "@material-ui/core/Chip";
 import Input from "@material-ui/core/Input";
 import MenuItem from "@material-ui/core/MenuItem";
+import {getJobList, createJob, applyForJob} from "../../apihandler";
+import {getDownloadURL, ref, uploadBytesResumable} from "firebase/storage";
+import {storage} from "../../../firebase";
 // import AutoComplete from "@mui/lab/Autocomplete";
 // import TextField from "@mui/material/TextField";
 
@@ -36,6 +39,34 @@ function AddJob() {
     setDeptName(event.target.value);
   };
 
+  const onFileUploadHandler = (event) => {
+    event.preventDefault();
+    const file = event.target[0].files[0];
+    uploadFile(file, "jobDesc/jobid/${file.name}");
+  };
+
+  const [jdUrl, setJDUrl] = useState("");
+
+  const uploadFile = (file) => {
+    if (!file) return "";
+    const sotrageRef = ref(storage, `files/${file.name}`);
+    const uploadTask = uploadBytesResumable(sotrageRef, file);
+    //setIsLoading(true);
+    uploadTask.on(
+      "state_changed",
+      (snapshot) => {
+        const prog = Math.round(
+          (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+        );
+        console.log("Bytes transferred: ", prog);
+      },
+      (error) => console.log(error),
+      () => {
+        setJDUrl(getDownloadURL(uploadTask.snapshot.ref));
+      }
+    );
+  };
+
   const addJobHandler = (event) => {
     event.preventDefault();
     console.log(companyNameRef.current.value);
@@ -48,6 +79,33 @@ function AddJob() {
     // console.log(timeRef.current.value);
     console.log(jdRef.current.value);
 
+
+    const slab = 1;
+    if (ctcRef.current.value < 600000){
+      const slab=1;
+    }
+    else if (ctcRef.current.value < 2000000){
+      const slab=2;
+    }
+    else{
+      const slab=3;
+    }
+    const data ={
+      "job_type":jobTypeRef.current.value,
+      "company_name":companyNameRef.current.value,
+      "dept_allowed":deptName.toString(),
+      "ctc":ctcRef.current.value,
+      "comp_address": locationRef.current.value,
+      "job_desc":"",
+      "placed_slab": slab,
+      "start_date":"2022-12-01",
+      "end_date":dateRef.current.value,
+      //"extras":"5678",
+      "job_role":jobRoleRef.current.value,
+      "jd_link":jdUrl,
+    }
+    createJob(data);
+
     companyNameRef.current.value = "";
     jobRoleRef.current.value = "";
     jobTypeRef.current.value = "";
@@ -59,6 +117,7 @@ function AddJob() {
     setDeptName([]);
     jdRef.current.value = "";
   };
+
 
   return (
     <Wrapper style={styles.bg}>
@@ -102,7 +161,7 @@ function AddJob() {
           required
         >
           <option value=" ">Select</option>
-          <option value="Innternship">Internship</option>
+          <option value="Internship">Internship</option>
           <option value="Full Time">Full Time</option>
         </select>
         <br />
