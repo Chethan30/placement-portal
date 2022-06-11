@@ -36,18 +36,21 @@ function Applications() {
       {isLoading ? (
         <LoadingScreen loadMessage="Loading..." />
       ) : (
-        JobList.map((job) => {
-          return (
-            <ApplicationsCard
-              jobRole={job.job_role}
-              jobType={job.job_type}
-              companyName={job.company_name}
-              status={job.status}
-              ctc={job.ctc}
-              date={job.date}
-            />
-          );
-        })
+        <div className={styles.content}>
+          {JobList.map((job) => {
+            return (
+              <ApplicationsCard
+                key={job.company_name}
+                jobRole={job.job_role}
+                jobType={job.job_type}
+                companyName={job.company_name}
+                status={job.status}
+                ctc={job.ctc}
+                date={job.date}
+              />
+            );
+          })}
+        </div>
       )}
     </Wrapper>
   );
