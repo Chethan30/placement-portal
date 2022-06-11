@@ -9,6 +9,11 @@ function JobCard(props) {
   const jobRole = props.jobRole;
   const jobType = props.jobType;
   const remainingDays = props.remainingDays;
+  let oldJob = false;
+
+  if (remainingDays < 0) {
+    oldJob = true;
+  }
 
   // let todayDate = new Date();
   // let endDate = new Date(props.endDate);
@@ -43,9 +48,11 @@ function JobCard(props) {
             <span>{jobType}</span>
           </div>
         </div>
-        <button className={styles["more-button"]} onClick={onMoreHandler}>
-          {"More >"}
-        </button>
+        {!oldJob && (
+          <button className={styles["more-button"]} onClick={onMoreHandler}>
+            {"More >"}
+          </button>
+        )}
       </div>
     </div>
   );

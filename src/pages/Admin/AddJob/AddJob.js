@@ -5,9 +5,11 @@ import Select from "@material-ui/core/Select";
 import Chip from "@material-ui/core/Chip";
 import Input from "@material-ui/core/Input";
 import MenuItem from "@material-ui/core/MenuItem";
-import {createJob} from "../../apihandler";
-import {getDownloadURL, ref, uploadBytesResumable} from "firebase/storage";
-import {storage} from "../../../firebase";
+
+import { createJob } from "../../apihandler";
+import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
+import { storage } from "../../../firebase";
+
 // import AutoComplete from "@mui/lab/Autocomplete";
 // import TextField from "@mui/material/TextField";
 
@@ -86,29 +88,27 @@ function AddJob() {
 
 
     let slab = 1;
-    if (ctcRef.current.value < 600000){
-      slab=1;
+    if (ctcRef.current.value < 600000) {
+      slab = 1;
+    } else if (ctcRef.current.value < 2000000) {
+      slab = 2;
+    } else {
+      slab = 3;
     }
-    else if (ctcRef.current.value < 2000000){
-      slab=2;
-    }
-    else{
-      slab=3;
-    }
-    const data ={
-      "job_type":jobTypeRef.current.value,
-      "company_name":companyNameRef.current.value,
-      "dept_allowed":deptName.toString(),
-      "ctc":ctcRef.current.value,
-      "comp_address": locationRef.current.value,
-      "job_desc":jobDescRef.current.value,
-      "placed_slab": slab,
-      "start_date":"2022-12-01",
-      "end_date":dateRef.current.value,
+    const data = {
+      job_type: jobTypeRef.current.value,
+      company_name: companyNameRef.current.value,
+      dept_allowed: deptName.toString(),
+      ctc: ctcRef.current.value,
+      comp_address: locationRef.current.value,
+      job_desc: jobDescRef.current.value,
+      placed_slab: slab,
+      start_date: "2022-12-01",
+      end_date: dateRef.current.value,
       //"extras":"5678",
-      "job_role":jobRoleRef.current.value,
-      "jd_link":jdUrl,
-    }
+      job_role: jobRoleRef.current.value,
+      jd_link: jdUrl,
+    };
     createJob(data);
 
     companyNameRef.current.value = "";
@@ -124,12 +124,11 @@ function AddJob() {
     jdRef.current.value = "";
   };
 
-
   return (
     <Wrapper style={styles.bg}>
       <div className={styles.heading}>Add Job Form</div>
       <form onSubmit={onFileUploadHandler}>
-        <label className={styles.inputlabel}>
+        <label className={styles.inputlabel} id="addjob">
           Company Name <span>*</span>
         </label>
         <br />
@@ -178,7 +177,7 @@ function AddJob() {
         <br />
         <textarea
           ref={jobDescRef}
-          className={styles.inputfield}
+          className={`${styles.jobdescription} ${styles.inputfield} `}
           placeholder="Job Desc"
           required
         />
