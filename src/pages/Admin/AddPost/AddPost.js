@@ -20,7 +20,7 @@ function AddPost() {
 
   let formContent = (
     <React.Fragment>
-      <div className={styles.heading}>Add Job Form</div>
+      <div className={styles.heading}>Add Post</div>
       <form onSubmit={addPostHandler}>
         <label className={styles.inputlabel} id="addtitle">
           Title <span>*</span>
