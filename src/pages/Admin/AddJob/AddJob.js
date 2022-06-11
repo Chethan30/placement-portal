@@ -5,9 +5,11 @@ import Select from "@material-ui/core/Select";
 import Chip from "@material-ui/core/Chip";
 import Input from "@material-ui/core/Input";
 import MenuItem from "@material-ui/core/MenuItem";
+
 import { createJob } from "../../apihandler";
 import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
 import { storage } from "../../../firebase";
+
 // import AutoComplete from "@mui/lab/Autocomplete";
 // import TextField from "@mui/material/TextField";
 
@@ -83,6 +85,7 @@ function AddJob() {
     console.log(deptName);
     // console.log(timeRef.current.value);
     console.log(jdRef.current.value);
+
 
     let slab = 1;
     if (ctcRef.current.value < 600000) {
