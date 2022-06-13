@@ -35,3 +35,12 @@ export function getBlogs(){
 export function addPost(data){
   return axiosClient.post("/blogs/createBlog", JSON.stringify(data));
 }
+
+export function deleteJob(data){
+  console.log("data ",data)
+  return axiosClient.post("/jobs/deleteJob", JSON.stringify(data));
+}
+
+export function shortlistedForJob(data){
+  return axiosClient.post("/jobs/updateJobStatus", JSON.stringify(data));
+}
