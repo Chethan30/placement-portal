@@ -10,6 +10,13 @@ function JobCard(props) {
   const jobType = props.jobType;
   let remainingDays = props.remainingDays;
   let oldJob = false;
+  // let cardColors = [
+  //   "linear-gradient(to right, #eefeff, #e0feff, #d1ffff, #c1fffe, #b1fffc)",
+  //   "linear-gradient(to right, #faffee, #f4ffdb, #eeffc7, #e8ffb3, #e1ff9f)",
+  //   "linear-gradient(to right, #ffffee, #feffdf, #fdffd0, #fbffc0, #f8ffb1)",
+  //   "linear-gradient(to right, #fff8ee, #fff1de, #ffe9cf, #ffe2c0, #ffdab1)",
+  //   "linear-gradient(to right, #fdeeff, #fae2ff, #f6d6fe, #f1caff, #ebbeff)",
+  // ];
 
   if (remainingDays < 0) {
     oldJob = true;
@@ -30,7 +37,12 @@ function JobCard(props) {
 
   return (
     <div className={styles.card}>
-      <div className={styles.uppercard}>
+      <div
+        className={styles.uppercard}
+        // style={{
+        //   background: cardColors[Math.floor(Math.random() * 5)],
+        // }}
+      >
         <span className={styles.companyname}> {companyName} </span>
         <div className={controlClasses}>
           {remainingDays} {!oldJob && "days left"}

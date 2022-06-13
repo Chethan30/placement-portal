@@ -2,23 +2,25 @@ import React, { useRef, useState } from "react";
 import styles from "./AddPost.module.css";
 import Wrapper from "../../../components/UI/Wrapper";
 import Forum from "../../Forum/Forum";
-import {addPost} from "../../apihandler";
+import { addPost } from "../../apihandler";
+import AppliedModal from "../../ApplyPage/AppliedModal";
 
 function AddPost() {
   const [showAddPost, setShowAddPost] = useState(false);
+  const [success, setSuccess] = useState(false);
   const postTitle = useRef();
   const postContent = useRef();
-
 
   const addPostHandler = (event) => {
     event.preventDefault();
     setShowAddPost(false);
-    const data={
-      "title":postTitle.current.value,
-      "content": postContent.current.value
-    }
-    console.log(data)
+    const data = {
+      title: postTitle.current.value,
+      content: postContent.current.value,
+    };
+    console.log(data);
     addPost(data);
+    setSuccess(true);
   };
 
   const showAddPostHandler = () => {
@@ -76,19 +78,25 @@ function AddPost() {
 
   return (
     <Wrapper style={styles.bg}>
-      {!showAddPost && (
-        <div className={styles.container}>
-          <button
-            className={`${styles.submitbutton} ${styles.addPost}`}
-            onClick={showAddPostHandler}
-          >
-            {" "}
-            Add Post{" "}
-          </button>
-        </div>
+      {success ? (
+        <AppliedModal destination="/home" message={"Post Successful"} />
+      ) : (
+        <React.Fragment>
+          {!showAddPost && (
+            <div className={styles.container}>
+              <button
+                className={`${styles.submitbutton} ${styles.addPost}`}
+                onClick={showAddPostHandler}
+              >
+                {" "}
+                Add Post{" "}
+              </button>
+            </div>
+          )}
+          {showAddPost && formContent}
+          <Forum style={styles.newBG} />
+        </React.Fragment>
       )}
-      {showAddPost && formContent}
-      <Forum style={styles.newBG} />
     </Wrapper>
   );
 }

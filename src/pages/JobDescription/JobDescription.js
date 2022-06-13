@@ -25,7 +25,7 @@ function JobDescription(props) {
       if (response.status === 200) {
         setJobDescLoading(false);
         setJobDesc(response.data);
-        console.log(JobDesc);
+        console.log(response.data);
         return response;
       } else throw new Error("Error!");
     } catch (error) {
@@ -84,6 +84,7 @@ function JobDescription(props) {
   const location = JobDesc.location;
   const startDate = JobDesc.start_date;
   const lastDaytoApply = JobDesc.end_date;
+  const oldJob = JobDesc.old_job;
   // const miscAttachemnts = JobDesc.extras;
   const deptsAllowed = JobDesc.dept_allowed;
   const canApply = JobDesc.can_apply;
@@ -127,7 +128,7 @@ function JobDescription(props) {
           </div>
 
           <div className={styles["container-center"]}>
-            {canApply ? (
+            {canApply && !oldJob ? (
               <button className={styles.apply} onClick={onApplyHandler}>
                 Apply
               </button>
