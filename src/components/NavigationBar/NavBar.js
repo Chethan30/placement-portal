@@ -11,9 +11,9 @@ function NavBar(props) {
         <li className={styles["logo-nav"]}>Placement Portal</li>
       </Link>
       <ul className={styles.menu}>
-        {/* <Link to="cvscorer" className={styles.cvscorer}>
-          <li>CVScorer</li>
-        </Link> */}
+        <Link to="statistics" className={styles.cvscorer}>
+          <li>Stats</li>
+        </Link>
         <Link to="applications" className={styles.applications}>
           <li>Applications</li>
         </Link>

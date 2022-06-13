@@ -12,6 +12,7 @@ import ApplyPage from "../ApplyPage/ApplyPage";
 import AddJob from "../Admin/AddJob/AddJob";
 import AddPost from "../Admin/AddPost/AddPost";
 import Forum from "../Forum/Forum";
+import Statistics from "../Statistics/Statistics";
 // import AppliedModal from "../ApplyPage/AppliedModal";
 // import styles from "./HomeScreen.module.css";
 function HomeScreen(props) {
@@ -33,6 +34,7 @@ function HomeScreen(props) {
         <Route path="addpost" element={<AddPost />} />
         <Route path="cvscorer" element={<CVScorer />} />
         <Route path="apply" element={<ApplyPage />} />
+        <Route path="statistics" element={<Statistics />} />
         <Route path="applications" element={<Applications />} />
         <Route path="jobdescrption" element={<JobDescription />} />
         <Route path="forum" element={<Forum />} />
