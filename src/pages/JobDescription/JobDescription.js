@@ -4,8 +4,10 @@ import { useNavigate } from "react-router-dom";
 import styles from "./JobDescription.module.css";
 import Wrapper from "../../components/UI/Wrapper";
 import FileHolder from "../../components/FileHolder/FileHolder";
-import { getJobDesc } from "../apihandler";
+import {deleteJob, getJobDesc, shortlistedForJob} from "../apihandler";
 import LoadingScreen from "../../components/LoadingPage/LoadingPage";
+import {getDownloadURL, ref, uploadBytesResumable} from "firebase/storage";
+import {storage} from "../../firebase";
 
 function JobDescription(props) {
   const { role } = useContext(AuthContext);
@@ -13,6 +15,7 @@ function JobDescription(props) {
   const [jobDescLoading, setJobDescLoading] = useState(false);
   const [JobDesc, setJobDesc] = useState([]);
   const [adminPrivilage, setAdminPrivilage] = useState(false);
+  const [jobDeleted, setJobDeleted] = useState(false)
 
   const getJobDescription = async () => {
     try {
@@ -30,8 +33,37 @@ function JobDescription(props) {
     }
   };
 
+  const deleteJobHandler = () => {
+      deleteJob({"job_id":sessionStorage.getItem('current_jobID')});
+      setJobDeleted(true);
+  }
+
   const shortlistUploadHandler = (event) => {
     event.preventDefault();
+    const file = event.target[0].files[0];
+    uploadFile(file, "jobs/shortlisted/${file.name}");
+  };
+
+  const uploadFile = (file) => {
+    if (!file) return "";
+    const sotrageRef = ref(storage, `files/${file.name}`);
+    const uploadTask = uploadBytesResumable(sotrageRef, file);
+    uploadTask.on(
+      "state_changed",
+      (snapshot) => {
+        const prog = Math.round(
+          (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+        );
+        console.log("Bytes transferred: ", prog);
+      },
+      (error) => console.log(error),
+      () => {
+        getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+          console.log("File available at", downloadURL);
+          shortlistedForJob({"url":downloadURL, "job_id":sessionStorage.getItem("current_jobID")});
+        });
+      }
+    );
   };
 
   useEffect(() => {
@@ -109,6 +141,7 @@ function JobDescription(props) {
             {adminPrivilage && (
               <button
                 type="button"
+                onClick={deleteJobHandler}
                 className={`${styles.delete} ${styles.apply} `}
               >
                 Delete
