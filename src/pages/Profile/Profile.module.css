@@ -21,7 +21,7 @@
 } */
 
 .profile-picture {
-  border-radius: 10%;
+  border-radius: 50%;
   width: 10rem;
   height: 10rem;
   display: flex;
@@ -33,7 +33,7 @@
 }
 
 .profile-picture img {
-  transform: scale(1);
+  transform: scale(0.55);
 }
 
 .general-details {
