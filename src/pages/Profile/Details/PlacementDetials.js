@@ -3,9 +3,9 @@ import classes from "../Profile.module.css";
 
 function PlacementDetials(props) {
   const PlacedDets = props.PlacedDets;
-  const slab1 = "Infosys";
-  const slab2 = null;
-  const slab3 = "Google";
+  const slab1 = props.slab1;
+  const slab2 = props.slab2;
+  const slab3 = props.slab2;
   console.log(PlacedDets);
 
   return (

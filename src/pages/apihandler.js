@@ -42,5 +42,6 @@ export function deleteJob(data){
 }
 
 export function shortlistedForJob(data){
+  console.log(data)
   return axiosClient.post("/jobs/updateJobStatus", JSON.stringify(data));
 }

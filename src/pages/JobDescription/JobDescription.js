@@ -60,7 +60,7 @@ function JobDescription(props) {
       () => {
         getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
           console.log("File available at", downloadURL);
-          shortlistedForJob({"url":downloadURL, "job_id":sessionStorage.getItem("current_jobID")});
+          shortlistedForJob({"url":downloadURL,"ctc":JobDesc.ctc,"company_name":JobDesc.company_name, "job_id":sessionStorage.getItem("current_jobID")});
         });
       }
     );
