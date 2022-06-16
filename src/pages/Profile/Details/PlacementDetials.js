@@ -3,10 +3,10 @@ import classes from "../Profile.module.css";
 
 function PlacementDetials(props) {
   const PlacedDets = props.PlacedDets;
-  const slab1 = "Infosys";
-  const slab2 = null;
-  const slab3 = "Google";
-  console.log(PlacedDets);
+  const slab1 = PlacedDets.slab1;
+  const slab2 = PlacedDets.slab2;
+  const slab3 = PlacedDets.slab3;
+  console.log("PD", props);
 
   return (
     <div className={classes["placed-details"]}>
