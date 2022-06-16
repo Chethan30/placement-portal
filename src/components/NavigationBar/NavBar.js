@@ -31,7 +31,7 @@ function NavBar(props) {
       <button onClick={props.onLogout} className={styles.logout}>
         Logout
       </button>
-      <button className={`${styles.hamburger} ${styles["is-active"]}`}>
+      <button className={`${styles.hamburger}`}>
         <span></span>
         <span></span>
         <span></span>

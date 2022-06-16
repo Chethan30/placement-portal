@@ -53,18 +53,9 @@ nav {
   background-color: white;
 } */
 
-@media screen and (max-width: 768px) {
-  .menu {
-    display: none;
-  }
-  .hamburger {
-    display: visible;
-  }
-}
-
 .hamburger {
-  display: none;
-  /* position: relative;
+  display: block;
+  position: relative;
   z-index: 1;
 
   user-select: none;
@@ -72,10 +63,10 @@ nav {
   border: none;
   outline: none;
   background: none;
-  cursor: pointer; */
+  cursor: pointer;
 }
 
-/* .hamburger span {
+.hamburger span {
   display: block;
   position: relative;
   width: 2em;
@@ -89,14 +80,26 @@ nav {
   transition: 0.5s;
 }
 
-.hamburger:hover span:nth-child(2),
-.hamburger.is-active span:nth-child(2) {
-  transform: translateX(5px);
+.hamburger:hover span:nth-child(2) {
+  transform: translateX(10px);
 }
-.hamburger:hover span:nth-child(3),
+
+.hamburger.is-active span:nth-child(1) {
+  transform: translate(0px, -2px) rotate(45deg);
+}
+
+.hamburger.is-active span:nth-child(2) {
+  opacity: 0;
+  transform: translateX(15px);
+}
+
 .hamburger.is-active span:nth-child(3) {
+  transform: translate(-3px, 3px) rotate(-45deg);
+}
+
+.hamburger:hover span:nth-child(3) {
   transform: translateX(-5px);
-} */
+}
 
 .cvscorer,
 .profile,
@@ -115,4 +118,19 @@ nav {
   font-size: 1.2em;
   text-decoration: none;
   list-style: none;
+}
+
+@media screen and (max-width: 768px) {
+  .menu {
+    display: none;
+  }
+  .hamburger {
+    display: visible;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .hamburger {
+    display: none;
+  }
 }
