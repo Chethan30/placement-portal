@@ -13,7 +13,6 @@ function Forum(prop) {
     try {
       setIsLoading(true);
       const response = await getBlogs();
-      console.log(response);
       if (response.status === 200) {
         setBlogList(response.data.blogs);
         setIsLoading(false);
