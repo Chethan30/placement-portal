@@ -5,6 +5,7 @@ import BarChart from "../../components/Charts/BarChart/BarChart";
 import PieChart from "../../components/Charts/PieChart/PieChart";
 import { Chart as ChartJS } from "chart.js/auto";
 import { getStats } from "../apihandler";
+import LoadingPage from "../../components/LoadingPage/LoadingPage";
 
 function Statistics() {
   const bgcolor = [
@@ -15,6 +16,10 @@ function Statistics() {
     "rgba(153, 102, 255, 0.5)",
     "rgba(255, 159, 64, 0.5)",
   ];
+
+  const bgcolor2 = ["rgba(54, 162, 235, 0.4)", "rgba(255, 206, 86, 0.7)"];
+
+  const bordercolor2 = ["rgba(54, 162, 235, 1)", "rgba(255, 206, 86, 1)"];
 
   const bordercolor = [
     "rgba(255, 99, 132, 1)",
@@ -42,8 +47,8 @@ function Statistics() {
               {
                 label: temp[0].chart_type,
                 data: temp[0].data,
-                backgroundColor: bgcolor,
-                borderColor: bordercolor,
+                backgroundColor: bgcolor2,
+                borderColor: bordercolor2,
                 borderWidth: 1,
               },
             ],
@@ -91,12 +96,19 @@ function Statistics() {
   return (
     <Wrapper style={styles.bg}>
       <div className={styles.heading}>Statistics</div>
-      <div className={styles.subheading}>Placed vs Unplaced</div>
-      {isDataLoaded ? <PieChart chartData={data[0]} /> : ""}
-      <div className={styles.subheading}>Departments</div>
-      {isDataLoaded ? <BarChart chartData={data[1]} /> : ""}
-      <div className={styles.subheading}>Slabs</div>
-      {isDataLoaded ? <BarChart chartData={data[2]} /> : ""}
+      {!isDataLoaded && <LoadingPage loadMessage="Loading..." />}
+      {isDataLoaded && (
+        <div className={styles.container}>
+          <div className={styles.subheading}>Placed vs Unplaced</div>
+          {isDataLoaded ? <PieChart chartData={data[0]} /> : ""}
+          <hr className={styles.dividers} />
+          <div className={styles.subheading}>Slabs</div>
+          {isDataLoaded ? <BarChart chartData={data[1]} /> : ""}
+          <hr className={styles.dividers} />
+          <div className={styles.subheading}>Departments</div>
+          {isDataLoaded ? <BarChart chartData={data[2]} /> : ""}
+        </div>
+      )}
     </Wrapper>
   );
 }
