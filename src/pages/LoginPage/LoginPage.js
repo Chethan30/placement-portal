@@ -3,6 +3,7 @@ import LoginForm from "./LoginForm";
 import AdminLoginForm from "../Admin/AdminLoginPage/AdminLoginForm";
 import LoginLoading from "../../components/LoadingPage/LoadingPage";
 import logoBanner from "../../assets/LogoBanner.png";
+import collegeLogo from "../../assets/CollegeLogo.jpg";
 import styles from "./LoginPage.module.css";
 
 function LoginPage() {
@@ -28,11 +29,24 @@ function LoginPage() {
     </div>
   );
 
+  const collegeDetials = (
+    <div className={styles.holder}>
+      <img className={styles.collogo} src={collegeLogo} alt="" />
+      <p className={styles.colname}>Dayananada Sagar College of Engineering</p>
+      <p className={styles.deptname}>
+        Department of Computer Science and Engineering
+      </p>
+    </div>
+  );
+
   return (
     <div className="container">
+      {!isLoading && collegeDetials}
       {logInContent}
       <div className={styles.footer}>
-        <div className={styles["footer-text"]}>Made with ❤️ in India.</div>{" "}
+        <div className={styles["footer-text"]}>
+          Made with ❤️ by Chethan | Chitraksh | Garvita | Attuul.
+        </div>{" "}
       </div>
     </div>
   );
