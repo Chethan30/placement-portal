@@ -95,7 +95,7 @@ function AddJob() {
       company_name: companyNameRef.current.value,
       dept_allowed: deptName.toString(),
       ctc: ctcRef.current.value,
-      comp_address: locationRef.current.value,
+      location: locationRef.current.value,
       job_desc: jobDescRef.current.value,
       placed_slab: slab,
       start_date: "2022-12-01",
