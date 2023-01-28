@@ -1,30 +1,54 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import AuthContext from "../../context/auth-context";
 import styles from "./NavBar.module.css";
 function AdminNavBar(props) {
   const { username } = useContext(AuthContext);
+  const [showLinks, setShowLinks] = useState(false);
+
+  const showMenuHandler = () => {
+    if (window.innerWidth < 768) {
+      setShowLinks(!showLinks);
+    } else {
+      return;
+    }
+  };
 
   return (
     <nav>
       <Link to="adminhome" className={styles.home}>
         <li className={styles["logo-nav"]}>Placement Portal</li>
       </Link>
-      <ul className={styles.menu}>
-        <Link to="addjob" className={styles.applications}>
+      <ul className={styles.menu} id={showLinks ? `${styles.show}` : ""}>
+        <Link
+          to="addjob"
+          className={styles.applications}
+          onClick={showMenuHandler}
+        >
           <li>Add Job</li>
         </Link>
-        <Link to="addpost" className={styles.applications}>
+        <Link
+          to="addpost"
+          className={styles.applications}
+          onClick={showMenuHandler}
+        >
           <li>Forum</li>
         </Link>
-        <Link to="profile" className={styles.profile}>
+        <Link to="profile" className={styles.profile} onClick={showMenuHandler}>
           <li>{username ? username[0].toUpperCase() : null}</li>
         </Link>
+        <button onClick={props.onLogout} className={styles.logout}>
+          Logout
+        </button>
       </ul>
-      <button onClick={props.onLogout} className={styles.logout}>
-        Logout
-      </button>
-      <button className={`${styles.hamburger} ${styles["is-active"]}`}>
+      <button
+        className={
+          showLinks
+            ? `${styles.hamburger} ${styles["is-active"]}`
+            : `${styles.hamburger}`
+        }
+        onClick={showMenuHandler}
+      >
         <span></span>
         <span></span>
         <span></span>

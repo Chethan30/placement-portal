@@ -35,21 +35,44 @@
   justify-content: center;
   /* margin: 0 auto; */
   position: absolute;
-  bottom: 0%;
+  bottom: 1%;
   left: 50%;
-  margin-left: -100px;
-  /* right: 60%; */
-  /* left: auto; */
-  /* right: 50%; */
+  margin-left: -200px;
   padding: 5px;
 }
 
 .footer-text {
   font-family: "Source Code Pro";
   font-weight: bold;
+  font-size: 0.8rem;
 }
 
-@media (max-width: 768px) {
+.holder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  margin-top: 0.5rem;
+}
+
+.colname {
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+
+.deptname {
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.collogo {
+  width: 50px;
+  height: 50px;
+  /* margin-right: 1rem; */
+}
+
+@media screen and (max-width: 768px) {
   .logo {
     /* width: 50px;
     height: 50px; */
@@ -60,8 +83,74 @@
   .img {
     height: 100px;
   }
-  .LoginPage {
+  /* .LoginPage {
     flex-direction: column;
+  } */
+  .container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .colname,
+  .deptname,
+  .collogo .footer {
+    transform: scale(0.9);
+  }
+
+  .colname {
+    font-size: 1rem;
+  }
+
+  .deptname {
+    font-size: 0.8rem;
+  }
+
+  .collogo {
+    width: 25px;
+    height: 25px;
+  }
+
+  .footer {
+    margin-top: auto;
+    left: 52%;
+  }
+
+  .footer-text {
+    font-size: 0.7rem;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .colname,
+  .deptname,
+  .collogo .footer {
+    transform: scale(0.9);
+  }
+
+  .colname {
+    font-size: 1rem;
+  }
+
+  .deptname {
+    font-size: 0.8rem;
+  }
+
+  .collogo {
+    width: 25px;
+    height: 25px;
+  }
+
+  .footer {
+    margin-top: auto;
+  }
+
+  .footer-text {
+    font-size: 0.5rem;
   }
 }
 

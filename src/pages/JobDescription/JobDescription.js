@@ -1,21 +1,22 @@
-import React, { useEffect, useState, useContext } from "react";
+import { useEffect, useState, useContext } from "react";
 import AuthContext from "../../context/auth-context";
 import { useNavigate } from "react-router-dom";
 import styles from "./JobDescription.module.css";
 import Wrapper from "../../components/UI/Wrapper";
 import FileHolder from "../../components/FileHolder/FileHolder";
-import {deleteJob, getJobDesc, shortlistedForJob} from "../apihandler";
+import { deleteJob, getJobDesc, shortlistedForJob } from "../apihandler";
 import LoadingScreen from "../../components/LoadingPage/LoadingPage";
-import {getDownloadURL, ref, uploadBytesResumable} from "firebase/storage";
-import {storage} from "../../firebase";
+import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
+import { storage } from "../../firebase";
 
 function JobDescription(props) {
   const { role } = useContext(AuthContext);
   let navigate = useNavigate();
   const [jobDescLoading, setJobDescLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [JobDesc, setJobDesc] = useState([]);
   const [adminPrivilage, setAdminPrivilage] = useState(false);
-  const [jobDeleted, setJobDeleted] = useState(false)
+  const [jobDeleted, setJobDeleted] = useState(false);
 
   const getJobDescription = async () => {
     try {
@@ -34,9 +35,10 @@ function JobDescription(props) {
   };
 
   const deleteJobHandler = () => {
-      deleteJob({"job_id":sessionStorage.getItem('current_jobID')});
-      setJobDeleted(true);
-  }
+    deleteJob({ job_id: sessionStorage.getItem("current_jobID") });
+    setJobDeleted(true);
+    navigate("/home");
+  };
 
   const shortlistUploadHandler = (event) => {
     event.preventDefault();
@@ -48,6 +50,7 @@ function JobDescription(props) {
     if (!file) return "";
     const sotrageRef = ref(storage, `files/${file.name}`);
     const uploadTask = uploadBytesResumable(sotrageRef, file);
+    setIsLoading(true);
     uploadTask.on(
       "state_changed",
       (snapshot) => {
@@ -60,7 +63,17 @@ function JobDescription(props) {
       () => {
         getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
           console.log("File available at", downloadURL);
-          shortlistedForJob({"url":downloadURL, "job_id":sessionStorage.getItem("current_jobID")});
+          setIsLoading(false);
+          // shortlistedForJob({
+          //   url: downloadURL,
+          //   job_id: sessionStorage.getItem("current_jobID"),
+          // });
+          shortlistedForJob({
+            url: downloadURL,
+            ctc: JobDesc.ctc,
+            company_name: JobDesc.company_name,
+            job_id: sessionStorage.getItem("current_jobID"),
+          });
         });
       }
     );
@@ -96,7 +109,9 @@ function JobDescription(props) {
   return (
     <Wrapper style={styles.jd}>
       {jobDescLoading ? (
-        <LoadingScreen loadMessage={"Getting Job...   "} />
+        <LoadingScreen
+          loadMessage={isLoading ? "Loading..." : "Getting Job...   "}
+        />
       ) : (
         <div>
           <div className={styles.companyname}> {companyName} </div>
@@ -128,12 +143,14 @@ function JobDescription(props) {
           </div>
 
           <div className={styles["container-center"]}>
-            {canApply && !oldJob ? (
+            {canApply && !oldJob && !adminPrivilage ? (
               <button className={styles.apply} onClick={onApplyHandler}>
                 Apply
               </button>
             ) : (
-              <button className={styles.cantapply}>Already Applied!</button>
+              !adminPrivilage && (
+                <button className={styles.cantapply}>Already Applied!</button>
+              )
             )}
             {/* <button className={styles.apply} onClick={onApplyHandler}>
               Apply

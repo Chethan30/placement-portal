@@ -1,3 +1,29 @@
 .bg {
   margin-top: 10rem;
 }
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.heading {
+  font-weight: bold;
+  font-size: 2rem;
+}
+
+.subheading {
+  margin-top: 1rem;
+  margin-bottom: 1.5rem;
+  font-weight: 800;
+  font-size: 1.5rem;
+}
+
+.dividers {
+  margin-top: 3rem;
+
+  width: 90%;
+  border: 1px solid rgb(226, 226, 226);
+}

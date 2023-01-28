@@ -35,6 +35,36 @@ nav {
   /* display: block; */
 }
 
+#show {
+  position: absolute;
+  left: 0px;
+  top: 5em;
+  height: 230px;
+  width: 100%;
+
+  padding: 0.5rem;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  background-image: linear-gradient(180deg, #0061ff 0%, #60efff 100%);
+  border-radius: 0.5em 0.5em 0.5em 0.5em;
+
+  animation: slide-down 400ms ease-out forwards;
+}
+
+@keyframes slide-down {
+  from {
+    opacity: 0;
+    transform: translateY(-3rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 .logout {
   background-color: rgb(255, 85, 85);
   color: white;
@@ -53,18 +83,9 @@ nav {
   background-color: white;
 } */
 
-@media screen and (max-width: 768px) {
-  .menu {
-    display: none;
-  }
-  .hamburger {
-    display: visible;
-  }
-}
-
 .hamburger {
-  display: none;
-  /* position: relative;
+  display: block;
+  position: relative;
   z-index: 1;
 
   user-select: none;
@@ -72,10 +93,10 @@ nav {
   border: none;
   outline: none;
   background: none;
-  cursor: pointer; */
+  cursor: pointer;
 }
 
-/* .hamburger span {
+.hamburger span {
   display: block;
   position: relative;
   width: 2em;
@@ -89,12 +110,27 @@ nav {
   transition: 0.5s;
 }
 
-.hamburger:hover span:nth-child(2),
-.hamburger.is-active span:nth-child(2) {
-  transform: translateX(5px);
+.hamburger:hover span:nth-child(2) {
+  transform: translateX(10px);
+  background-color: #60efff;
 }
-.hamburger:hover span:nth-child(3),
+
+.hamburger.is-active span:nth-child(1) {
+  transform: translate(0px, -2px) rotate(45deg);
+  background-color: rgb(255, 85, 85);
+}
+
+.hamburger.is-active span:nth-child(2) {
+  opacity: 0;
+  transform: translateX(15px);
+}
+
 .hamburger.is-active span:nth-child(3) {
+  transform: translate(-3px, 3px) rotate(-45deg);
+  background-color: rgb(255, 85, 85);
+}
+
+/* .hamburger:hover span:nth-child(3) {
   transform: translateX(-5px);
 } */
 
@@ -115,4 +151,19 @@ nav {
   font-size: 1.2em;
   text-decoration: none;
   list-style: none;
+}
+
+@media screen and (max-width: 768px) {
+  .menu {
+    display: none;
+  }
+  .hamburger {
+    display: visible;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .hamburger {
+    display: none;
+  }
 }

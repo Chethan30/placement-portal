@@ -5,7 +5,6 @@ import Select from "@material-ui/core/Select";
 import Chip from "@material-ui/core/Chip";
 import Input from "@material-ui/core/Input";
 import MenuItem from "@material-ui/core/MenuItem";
-
 import { createJob } from "../../apihandler";
 import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
 import { storage } from "../../../firebase";
@@ -49,13 +48,18 @@ function AddJob() {
     uploadFile(file, "jobDesc/jobid/${file.name}");
   };
 
-  //const [jdUrl, setJDUrl] = useState("");
-
+  let slab = 1;
   const uploadFile = (file) => {
+    if (ctcRef.current.value < 600000) {
+      slab = 1;
+    } else if (ctcRef.current.value < 2000000) {
+      slab = 2;
+    } else {
+      slab = 3;
+    }
     if (!file) return "";
     const sotrageRef = ref(storage, `files/${file.name}`);
     const uploadTask = uploadBytesResumable(sotrageRef, file);
-    //setIsLoading(true);
     uploadTask.on(
       "state_changed",
       (snapshot) => {
@@ -75,6 +79,7 @@ function AddJob() {
   };
 
   const addJobHandler = (jdUrl) => {
+    console.log(jdUrl);
     console.log(companyNameRef.current.value);
     console.log(jobRoleRef.current.value);
     console.log(jobTypeRef.current.value);
@@ -85,21 +90,12 @@ function AddJob() {
     console.log(deptName);
     // console.log(timeRef.current.value);
     console.log(jdRef.current.value);
-
-    let slab = 1;
-    if (ctcRef.current.value < 600000) {
-      slab = 1;
-    } else if (ctcRef.current.value < 2000000) {
-      slab = 2;
-    } else {
-      slab = 3;
-    }
     const data = {
       job_type: jobTypeRef.current.value,
       company_name: companyNameRef.current.value,
       dept_allowed: deptName.toString(),
       ctc: ctcRef.current.value,
-      comp_address: locationRef.current.value,
+      location: locationRef.current.value,
       job_desc: jobDescRef.current.value,
       placed_slab: slab,
       start_date: "2022-12-01",
@@ -109,7 +105,6 @@ function AddJob() {
       jd_link: jdUrl,
     };
     createJob(data);
-
     companyNameRef.current.value = "";
     jobRoleRef.current.value = "";
     jobTypeRef.current.value = "";
@@ -126,6 +121,7 @@ function AddJob() {
   return (
     <Wrapper style={styles.bg}>
       <div className={styles.heading}>Add Job Form</div>
+      {/* {isLoading && <LoadingPage loadMessage="Loading..." />} */}
       <form onSubmit={onFileUploadHandler}>
         <label className={styles.inputlabel} id="addjob">
           Company Name <span>*</span>
